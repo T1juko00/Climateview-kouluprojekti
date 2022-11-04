@@ -5,14 +5,15 @@ import javax.persistence.Id;
 
 @Entity
 public class northerndata {
+    
     @Id
-    private long year;
-    private int temp;
+    private int year;
+    private Double temp;
 
     public northerndata() {
     }
 
-    public northerndata(long year, int temp) {
+    public northerndata(int year, Double temp) {
         this.year = year;
         this.temp = temp;
     }
@@ -21,15 +22,15 @@ public class northerndata {
         return this.year;
     }
 
-    public void setYear(long year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public int getTemp() {
+    public Double getTemp() {
         return this.temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(Double temp) {
         this.temp = temp;
     }
     

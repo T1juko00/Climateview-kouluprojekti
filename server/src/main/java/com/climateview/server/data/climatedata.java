@@ -12,13 +12,13 @@ public class climatedata {
     @Id
     private int year;
     private Double temp, co2, ice_depth, years_calendar;
-    private String country, sector, event, clasId;
+    private String country, sector, event, classId;
 
 
     public climatedata() {
     }
     
-    public climatedata(int year, Double temp, Double co2, Double ice_depth, Double years_calendar, String country, String sector, String event, String clasId) {
+    public climatedata(int year, Double temp, Double co2, Double ice_depth, Double years_calendar, String country, String sector, String event, String classId) {
         this.year = year;
         this.temp = temp;
         this.co2 = co2;
@@ -27,7 +27,7 @@ public class climatedata {
         this.country = country;
         this.sector = sector;
         this.event = event;
-        this.clasId = clasId;
+        this.classId = classId;
 
     } 
 
@@ -96,12 +96,12 @@ public class climatedata {
         this.event = event;
     }
 
-    public String getClasId() {
-        return this.clasId;
+    public String getClassId() {
+        return this.classId;
     }
 
-    public void setClasId(String clasId) {
-        this.clasId = clasId;
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
 

@@ -20,11 +20,13 @@ public class databaseService {
     
         Connection connection=null;
 
+        String id = "V2";
+
         try {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert into northerndata(year,temp) values(?,?)";
+            String sql="insert into climatedata(classId) values(?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -42,6 +44,7 @@ public class databaseService {
 
                 statement.setInt(1, parseInt(year));
                 statement.setDouble(2, parseDouble(temp));
+                statement.setString(3, id);
                 statement.addBatch();
                 if(count%batchSize==0){
                     statement.executeBatch();

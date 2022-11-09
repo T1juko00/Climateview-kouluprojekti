@@ -1,5 +1,5 @@
 package com.climateview.server.northservice;
-import static java.lang.Integer.parseInt;
+//import static java.lang.Integer.parseInt;
 import static java.lang.Double.parseDouble;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-// Global annual = 1.1, monthly = 1.2
+//Global annual = 1.1, monthly = 1.2
 //Northern annual = 1.3, monthly = 1.4
 //Southern annual = 1.5, monthly 1.6
 

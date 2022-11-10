@@ -1,5 +1,4 @@
 package com.climateview.server.northservice;
-import static java.lang.Integer.parseInt;
 import static java.lang.Double.parseDouble;
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,25 +1,29 @@
 package com.climateview.server.data;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "climatedata")
 
-   
-    
 public class climatedata {
     
     @Id
-    private int year;
+    private Integer id;
+
+    //private int year;
+    private String classId;
     private Double temp, co2, ice_depth, years_calendar;
-    private String country, sector, event, classId;
+    private String country, sector, event;
 
 
     public climatedata() {
     }
     
     public climatedata(int year, Double temp, Double co2, Double ice_depth, Double years_calendar, String country, String sector, String event, String classId) {
-        this.year = year;
+        //this.year = year;
         this.temp = temp;
         this.co2 = co2;
         this.ice_depth = ice_depth;
@@ -28,17 +32,18 @@ public class climatedata {
         this.sector = sector;
         this.event = event;
         this.classId = classId;
-
     } 
 
-
-    public int getYear() {
+    public Integer getId() {
+        return this.id;
+    }
+   /* public int getYear() {
         return this.year;
     }
 
     public void setYear(int year) {
         this.year = year;
-    }
+    }*/
 
     public Double getTemp() {
         return this.temp;

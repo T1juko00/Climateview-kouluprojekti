@@ -5,7 +5,7 @@ export default function Navbar () {
     return (
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mg-4">
             <div class="container-fluid">
-                <Link  className="navbar-brand" to="/">Climate</Link>
+                <Link  className="navbar-brand" to="/">ClimateView</Link>
                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -17,10 +17,17 @@ export default function Navbar () {
                             <li class="nav-item">
                                 <Link className="nav-link" to="/about">About</Link>
                             </li>
-                        </ul>
+                            <li class="nav-item">
+                                <Link className="nav-link" to="/visualize">Visualize</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link className="nav-link" to="/login">Login</Link>
+                            </li>
+                        </ul> 
+                        
                     </div>
+                    
                 </div>
-                <button>login</button>
             </nav>
 
     )

@@ -4,7 +4,8 @@ export default function Footer() {
     return (
         <footer className='footer'>
             <div className='container'>
-                <span>Yhteystiedot</span>
+                <span>TVT21SP: </span>
+                <span>Antti Lassila, Antti Tiikkala, Konsta Juola, Abdulah Yusuf</span>
             </div>
         </footer>
     );

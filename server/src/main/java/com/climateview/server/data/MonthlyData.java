@@ -6,34 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class AnnualData {
+public class MonthlyData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int year;
+    private double years_calendar;
     private double temp;
     private String classId;
-    
 
-
-    public AnnualData(){
-
+    public MonthlyData() {
     }
-    public AnnualData(int year, double temp, String classId) {
-        this.classId = classId;
-        this.year = year;
+
+    public MonthlyData(double years_calendar, double temp, String classId) {
+        this.years_calendar = years_calendar;
         this.temp = temp;
-       
-    }
-
-
-    public String getClassId(){
-        return this.classId;
-    }
-
-    public void setClassId(String classId) {
         this.classId = classId;
     }
 
@@ -41,16 +29,12 @@ public class AnnualData {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public double getYears_calendar() {
+        return this.years_calendar;
     }
 
-    public int getYear() {
-        return this.year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public void setYears_calendar(double years_calendar) {
+        this.years_calendar = years_calendar;
     }
 
     public double getTemp() {
@@ -61,15 +45,12 @@ public class AnnualData {
         this.temp = temp;
     }
 
- 
+    public String getClassId() {
+        return this.classId;
+    }
 
-  
-
-
-
-    
-   
-
-
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
     
 }

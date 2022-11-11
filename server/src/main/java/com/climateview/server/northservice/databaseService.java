@@ -17,7 +17,7 @@ public class databaseService {
         String jdbcurl ="jdbc:mysql://localhost:3306/climate1";
         String username="root";
         String password="";
-        String filepath="server\\src\\main\\resources\\rawdata\\1.2.HadCRUT.analysis.summary_series.northern_hemisphere.annual.csv";
+        String filepath="ClimateView\\server\\src\\main\\resources\\rawdata\\1.5.HadCRUT.analysis.summary_series.southern_hemisphere.monthly.csv";
     
         int batchSize=20;
     
@@ -29,7 +29,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert into annual_data(year, temp) values(?,?)";
+            String sql="insert into monthly_data(years_calendar, temp) values(?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -45,7 +45,7 @@ public class databaseService {
                 String year= data[0];
                 String temp= data[1];
 
-                statement.setInt(1, parseInt(year));
+                statement.setDouble(1, parseDouble(year));
                 statement.setDouble(2, parseDouble(temp));
                 statement.addBatch();
                 if(count%batchSize==0){

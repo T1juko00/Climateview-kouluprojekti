@@ -26,7 +26,28 @@ public class AnnualDataService {
         return pAnnual.findById(id);
     }
 
-    public List<AnnualData> getAnnualByClassId(String class_Id){
+    
+    public List<AnnualData> getV2Data(){
+        return pAnnual.getV2Data();
+    }
+    
+    public List<AnnualData> getV1_2Data(){
+        return pAnnual.getV2Data();
+    }
+
+    public List<AnnualData> getV1Data(){
+        return pAnnual.getV1Data();
+    }
+
+    public List<AnnualData> getV1_4Data(){
+        return pAnnual.getV1_4Data();
+    }
+    
+    
+    
+    
+    
+    /*public List<AnnualData> getAnnualByClassId(String class_Id){
         List<AnnualData> search = new ArrayList<>();
         
         for (AnnualData annualData : Annual) {
@@ -36,5 +57,5 @@ public class AnnualDataService {
             
         }
         return search;
-    }
+    }*/
 }

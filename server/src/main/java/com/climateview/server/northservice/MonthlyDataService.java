@@ -40,6 +40,16 @@ public class MonthlyDataService {
 
     public List<MonthlyData> getV1_1Data(){
         return pMonthly.getV1_1Data();
+    } 
+
+    public List<MonthlyData> getV1_3Data(){
+        return pMonthly.getV1_3Data();
     }
+    
+    public List<MonthlyData> getV1_5Data(){
+        return pMonthly.getV1_5Data();
+    }
+
+    
     
 }

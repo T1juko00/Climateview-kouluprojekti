@@ -25,17 +25,76 @@ public class climateController {
         
     }
 
-    @GetMapping("V1_1DATA")
-    public List<MonthlyData> getV1_1data(){
-        return pMonthlydata.getV1_1Data();
-    }
 
     @GetMapping("allMonthly")
     public List<MonthlyData> getAllMonthly(){
         return pMonthlydata.getAllMonthlyData();
     }
 
-    @GetMapping("AnnualById/{id}")
+
+    @GetMapping("V1_1DATA")
+    public List<MonthlyData> getV1_1data(){
+        return pMonthlydata.getV1_1Data();
+    } 
+
+    @GetMapping("V1_3DATA")
+    public List<MonthlyData> getV1_3data(){
+        return pMonthlydata.getV1_3Data();
+    } 
+
+    @GetMapping("V1_5DATA")
+    public List<MonthlyData> getV1_5data(){
+        return pMonthlydata.getV1_5Data();
+    }
+
+    @GetMapping("V2Data")
+    public List<AnnualData> getV2Data(){
+        return pAnnualdata.getV2Data();
+        
+    } 
+
+    @GetMapping("V1Data")
+    public List<AnnualData> getV1Data(){
+        return pAnnualdata.getV1Data();
+        
+    }
+
+    @GetMapping("V1_2Data")
+    public List<AnnualData> getV1_2Data(){
+        return pAnnualdata.getV1_2Data();
+        
+    }
+
+    @GetMapping("V1_4Data")
+    public List<AnnualData> getV1_4Data(){
+        return pAnnualdata.getV1_4Data();
+        
+    }
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    /*  @GetMapping("AnnualById/{id}")
     public Optional<AnnualData> getAnnualById(@PathVariable long id){
         return pAnnualdata.getAnnualById(id);
     }
@@ -58,6 +117,6 @@ public class climateController {
         return pMonthlydata.getMonthlyByClassId(classId);
         
     }
-
+    */
 
 }

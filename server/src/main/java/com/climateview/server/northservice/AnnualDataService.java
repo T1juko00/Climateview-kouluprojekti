@@ -24,7 +24,6 @@ public class AnnualDataService {
 
         return pAnnual.findById(id);
     }
-
     
     public List<AnnualData> getV2Data(){
         return pAnnual.getV2Data();

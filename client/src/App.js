@@ -11,11 +11,14 @@ import Login from './components/Login';
 import SignUp from "./components/Signup";
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-
+import axios from 'axios';
+import {Buffer} from "buffer";
 
 function App() {
 
-//If true = logged in and access to visualize, If false= not logged in and no access to vizualize
+/**/
+
+  //If true = logged in and access to visualize, If false= not logged in and no access to vizualize
   const [isUSerLoggedIn, setIsUSerLoggedIn] = useState(true);
 
   // blocks access to visualize if not logged in
@@ -29,9 +32,8 @@ function App() {
     authRoutes = <Route path="/visualize" element={<Visualize />} />
   }
 
-
   return (
-      <>
+    <>
         <Navbar />
         <Header />
         <div className='container'>
@@ -45,5 +47,15 @@ function App() {
         <Footer />
       </>
   );
+
 }
+  
 export default App;
+
+
+
+
+
+
+
+

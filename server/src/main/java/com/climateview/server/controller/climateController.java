@@ -7,12 +7,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
 import com.climateview.server.data.User;
+import com.climateview.server.data.V3_1_co2_monthlydata;
+import com.climateview.server.data.V3_co2_annualdata;
 import com.climateview.server.northservice.AnnualDataService;
 import com.climateview.server.northservice.MonthlyDataService;
 import com.climateview.server.northservice.SecurityService;
+import com.climateview.server.northservice.V3_1_co2MonthlyService;
+import com.climateview.server.northservice.V3_co2AnnualService;
+
 
 import java.util.Base64;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -27,6 +35,10 @@ public class climateController {
     MonthlyDataService pMonthlydata;
     @Autowired
     SecurityService secService;
+    @Autowired
+    V3_1_co2MonthlyService pco2m;
+    @Autowired
+    V3_co2AnnualService pco2a;
 
     @GetMapping("allAnnual")
     public List<AnnualData> getAllAnnual(){
@@ -76,6 +88,33 @@ public class climateController {
         return pAnnualdata.getV1_4Data();
         
     }
+
+    @GetMapping("V3_1Data")
+    public List<V3_1_co2_monthlydata> getV3_1Data(){
+        return pco2m.getV3_1Data();
+        
+    }
+
+    @GetMapping("V6Data")
+    public List<V3_1_co2_monthlydata> getV6Data(){
+        return pco2m.getV6Data();
+        
+    }
+
+    @GetMapping("V3Data")
+    public List<V3_co2_annualdata> getV3Data(){
+        return pco2a.getV3Data();
+        
+    }
+
+    @GetMapping("V5Data")
+    public List<V3_co2_annualdata> getV5Data(){
+        return pco2a.getV5Data();
+        
+    }
+
+
+
 
     @PostMapping("register")
     public ResponseEntity<String> register(
@@ -132,6 +171,8 @@ public class climateController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.TEXT_PLAIN);
             return new ResponseEntity<>(token, HttpStatus.OK);
         }
 }

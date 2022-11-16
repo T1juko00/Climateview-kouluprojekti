@@ -8,20 +8,20 @@ const V2 = () => {
     const [isloading, setisloading] = useState(true)
   
     const Chart = () => {
-      let year = []
-      let temp = []
-      axios.get("http://localhost:8080/allAnnual")
+      let year_monthly = []
+      let co2 = []
+      axios.get("http://localhost:8080/V6Data")
         .then(response => {
           for (const dataObj of response.data) {
-            year.push(dataObj.year)
-            temp.push(dataObj.temp)
+            year_monthly.push(dataObj.year_monthly)
+            co2.push(dataObj.co2)
           }
           setChartData({
-            labels: year,
+            labels: year_monthly,
             datasets: [
               {
-                label: 'V1_4 Data',
-                data: temp,
+                label: 'V6 Data',
+                data: co2,
                 backgroundColor:'red',
                 borderColor:'black'
               }
@@ -42,7 +42,7 @@ const V2 = () => {
         },
         title: {
           display : true,
-          text:"V1_4 Data",
+          text:"V6 Data",
         },
         },
         scales: {

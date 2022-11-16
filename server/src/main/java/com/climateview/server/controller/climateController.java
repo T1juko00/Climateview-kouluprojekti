@@ -31,15 +31,12 @@ public class climateController {
     @GetMapping("allAnnual")
     public List<AnnualData> getAllAnnual(){
         return pAnnualdata.getAllAnnualDatas();
-        
     }
-
 
     @GetMapping("allMonthly")
     public List<MonthlyData> getAllMonthly(){
         return pMonthlydata.getAllMonthlyData();
     }
-
 
     @GetMapping("V1_1DATA")
     public List<MonthlyData> getV1_1data(){

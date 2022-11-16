@@ -1,17 +1,23 @@
 package com.climateview.server.controller;
-import java.util.List;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
-import com.climateview.server.data.V3_co2_annualdata;
-import com.climateview.server.data.V3_1_co2_monthlydata;
+import com.climateview.server.data.User;
 import com.climateview.server.northservice.AnnualDataService;
 import com.climateview.server.northservice.MonthlyDataService;
-import com.climateview.server.northservice.V3_co2AnnualService;
-import com.climateview.server.northservice.V3_1_co2MonthlyService;
+import com.climateview.server.northservice.SecurityService;
+
+import java.util.Base64;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class climateController {
@@ -20,9 +26,7 @@ public class climateController {
     @Autowired
     MonthlyDataService pMonthlydata;
     @Autowired
-    V3_co2AnnualService pCo2;
-    @Autowired
-    V3_1_co2MonthlyService pco2;
+    SecurityService secService;
 
     @GetMapping("allAnnual")
     public List<AnnualData> getAllAnnual(){
@@ -73,32 +77,70 @@ public class climateController {
         
     }
 
-    @GetMapping("V3Data")
-    public List<V3_co2_annualdata> getV3Data(){
-        return pCo2.getV3Data();
-        
+    @PostMapping("register")
+    public ResponseEntity<String> register(
+        @RequestParam String uname,
+        @RequestParam String pw,
+        @RequestParam String email)
+        {
+            User u = secService.register(uname, pw, email);
+            return new ResponseEntity<>(u.username, HttpStatus.OK);
+        }
+
+    @PostMapping("login")
+    public ResponseEntity<String> login(
+        @RequestParam String uname, 
+        @RequestParam String pw)
+        {
+            String token = secService.login(uname, pw);
+
+            if(token == null){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            return new ResponseEntity<>(token, HttpStatus.OK);
+        }
+ 
+    @GetMapping("private")
+    public ResponseEntity<String> getPrivateData(@RequestHeader("Authorization") String bearer){
+
+        if(bearer.startsWith("Bearer")){
+            String token = bearer.split(" ")[1];
+            String username = secService.validateJwt(token);
+            if(username!=null){
+                return new ResponseEntity<>("Private data for "+username, HttpStatus.OK);
+            }
+        }
+
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
-    @GetMapping("V5Data")
-    public List<V3_co2_annualdata> getV5Data(){
-        return pCo2.getV5Data();
+    @PostMapping("loginbasic")
+    public ResponseEntity<String> loginBasic(@RequestHeader("Authorization") String basicAuth)
+        {
+
+            String token = null;
+            //"Basic uname:pw"
+            if(basicAuth.startsWith("Basic")){
+                String credentials = basicAuth.split(" ")[1];
+                String[] user = new String( Base64.getDecoder().decode(credentials)).split(":");
+                token = secService.login(user[0], user[1]);
+            }
+
         
-    }
+            if(token == null){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
 
-    @GetMapping("V3_1Data")
-    public List<V3_1_co2_monthlydata> getV3_1Data(){
-        return pco2.getV3Data();
-        
-    }
-
-    @GetMapping("V6Data")
-    public List<V3_1_co2_monthlydata> getV6Data(){
-        return pco2.getV6Data();
-        
-    }
-
-
-  
+            return new ResponseEntity<>(token, HttpStatus.OK);
+        }
+}
+   
+   
+   
+   
+   
+   
    
    
    
@@ -141,4 +183,3 @@ public class climateController {
     }
     */
 
-}

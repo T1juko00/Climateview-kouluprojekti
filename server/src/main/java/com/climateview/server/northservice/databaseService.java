@@ -48,7 +48,7 @@ public class databaseService {
                 String year= data[0];
                 String temp= data[1];
 
-                statement.setDouble(1, parseDouble(year));
+                statement.setInt(1, parseInt(year));
                 statement.setDouble(2, parseDouble(temp));
                 statement.addBatch();
                 if(count%batchSize==0){

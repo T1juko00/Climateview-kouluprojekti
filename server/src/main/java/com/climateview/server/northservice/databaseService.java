@@ -10,6 +10,9 @@ import java.sql.PreparedStatement;
 //Global annual = 1.1, monthly = 1.2
 //Northern annual = 1.3, monthly = 1.4
 //Southern annual = 1.5, monthly 1.6
+//Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958: class_id: V3, table: co2_annualdata, class_id: V3.1, table: co2_monthlydata
+//Vostok Ice Core CO2 measurements, 417160 - 2342 year, class_id: V5, table: co2_annualdata
+//Ice core 800k year composite study CO2 measurements class_id: V6, table: co2_monthlydata
 
 public class databaseService {
     public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class databaseService {
         String jdbcurl ="jdbc:mysql://localhost:3306/climate1";
         String username="root";
         String password="";
-        String filepath="ClimateView\\server\\src\\main\\resources\\rawdata\\1.5.HadCRUT.analysis.summary_series.southern_hemisphere.monthly.csv";
+        String filepath="server\\src\\main\\resources\\rawdata\\V6.csv";
     
         int batchSize=20;
     
@@ -29,7 +32,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert into monthly_data(years_calendar, temp) values(?,?)";
+            String sql="insert into co2_monthlydata(year_monthly,co2) values(?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -62,7 +65,6 @@ public class databaseService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
     
 }

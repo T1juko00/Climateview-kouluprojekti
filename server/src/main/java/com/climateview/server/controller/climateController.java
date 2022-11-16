@@ -4,11 +4,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
+import com.climateview.server.data.V3_co2_annualdata;
+import com.climateview.server.data.V3_1_co2_monthlydata;
 import com.climateview.server.northservice.AnnualDataService;
 import com.climateview.server.northservice.MonthlyDataService;
+import com.climateview.server.northservice.V3_co2AnnualService;
+import com.climateview.server.northservice.V3_1_co2MonthlyService;
 
 @RestController
 public class climateController {
@@ -16,19 +19,20 @@ public class climateController {
     AnnualDataService pAnnualdata;
     @Autowired
     MonthlyDataService pMonthlydata;
+    @Autowired
+    V3_co2AnnualService pCo2;
+    @Autowired
+    V3_1_co2MonthlyService pco2;
 
     @GetMapping("allAnnual")
     public List<AnnualData> getAllAnnual(){
         return pAnnualdata.getAllAnnualDatas();
-        
     }
-
 
     @GetMapping("allMonthly")
     public List<MonthlyData> getAllMonthly(){
         return pMonthlydata.getAllMonthlyData();
     }
-
 
     @GetMapping("V1_1DATA")
     public List<MonthlyData> getV1_1data(){
@@ -69,12 +73,32 @@ public class climateController {
         
     }
 
-   
-   
-   
-   
-   
-   
+    @GetMapping("V3Data")
+    public List<V3_co2_annualdata> getV3Data(){
+        return pCo2.getV3Data();
+        
+    }
+
+    @GetMapping("V5Data")
+    public List<V3_co2_annualdata> getV5Data(){
+        return pCo2.getV5Data();
+        
+    }
+
+    @GetMapping("V3_1Data")
+    public List<V3_1_co2_monthlydata> getV3_1Data(){
+        return pco2.getV3Data();
+        
+    }
+
+    @GetMapping("V6Data")
+    public List<V3_1_co2_monthlydata> getV6Data(){
+        return pco2.getV6Data();
+        
+    }
+
+
+  
    
    
    

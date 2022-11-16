@@ -8,23 +8,22 @@ const V2 = () => {
     const [isloading, setisloading] = useState(true)
   
     const Chart = () => {
-      let years_calendar = []
+      let year = []
       let temp = []
-      axios.get("http://localhost:8080/V1_1DATA")
+      axios.get("http://localhost:8080/allAnnual")
         .then(response => {
           for (const dataObj of response.data) {
-            years_calendar.push(dataObj.years_calendar)
+            year.push(dataObj.year)
             temp.push(dataObj.temp)
           }
           setChartData({
-            labels: years_calendar,
+            labels: year,
             datasets: [
               {
-                label: 'V1.1 Data',
+                label: 'V1_4 Data',
                 data: temp,
-                backgroundColor: [
-                  'black'
-                ]
+                backgroundColor:'red',
+                borderColor:'black'
               }
             ],
           })
@@ -33,9 +32,25 @@ const V2 = () => {
           alert(error)
           setisloading(true)
         }
-  
         )
-    }
+}
+    const options = {
+      responsive: true,
+      plugins:{
+        legend:{
+          position: "top",
+        },
+        title: {
+          display : true,
+          text:"V1_4 Data",
+        },
+        },
+        scales: {
+          temp: {
+            position:"right"
+          },
+        },
+      };
   
     useEffect(() => {
       Chart()
@@ -46,22 +61,12 @@ const V2 = () => {
         <p>Loading</p>
       )
     }
-  
-    else {
       return (
-      <>
         <div id='chart' style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }} className="p-5 mb-4 bg-light rounded-3">
           <div className="container-fluid py-5">
-            <div><Line data={chartData} options={{
-              responsive: true,
-            }} /></div>
+            <div><Line data={chartData} options={options} /></div>
           </div>
         </div>
-      </>
-    )
-    }
-  
-  
+    );
   }
-  
   export default V2

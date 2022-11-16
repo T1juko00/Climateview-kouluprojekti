@@ -6,42 +6,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class AnnualData {
+public class V3_co2_annualdata {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int year;
-    private double temp;
+    private double co2;
     private String classId;
-    
 
 
-    public AnnualData(){
-
+    public V3_co2_annualdata() {
     }
-    public AnnualData(int year, double temp, String classId) {
-        this.classId = classId;
+
+    public V3_co2_annualdata(int year, double co2, String classId) {
         this.year = year;
-        this.temp = temp;
-       
-    }
-
-    public String getClassId(){
-        return this.classId;
-    }
-
-    public void setClassId(String classId) {
+        this.co2 = co2;
         this.classId = classId;
     }
 
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getYear() {
@@ -52,23 +38,20 @@ public class AnnualData {
         this.year = year;
     }
 
-    public double getTemp() {
-        return this.temp;
+    public double getCo2() {
+        return this.co2;
     }
 
-    public void setTemp(double temp) {
-        this.temp = temp;
+    public void setCo2(double co2) {
+        this.co2 = co2;
     }
 
- 
+    public String getClassId() {
+        return this.classId;
+    }
 
-  
-
-
-
-    
-   
-
-
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
     
 }

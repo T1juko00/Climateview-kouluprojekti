@@ -150,5 +150,5 @@ const V2 = () => {
           <p>Linkit ja description tänne</p>
         </div>
     );
-  }
+  } }
   export default V2

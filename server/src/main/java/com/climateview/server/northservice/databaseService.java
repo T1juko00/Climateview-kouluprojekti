@@ -1,23 +1,26 @@
 package com.climateview.server.northservice;
-import static java.lang.Integer.parseInt;
 import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-// Global annual = 1.1, monthly = 1.2
+//Global annual = 1.1, monthly = 1.2
 //Northern annual = 1.3, monthly = 1.4
 //Southern annual = 1.5, monthly 1.6
+//Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958: class_id: V3, table: co2_annualdata, class_id: V3.1, table: co2_monthlydata
+//Vostok Ice Core CO2 measurements, 417160 - 2342 year, class_id: V5, table: co2_annualdata
+//Ice core 800k year composite study CO2 measurements class_id: V6, table: co2_monthlydata
 
 public class databaseService {
     public static void main(String[] args) {
 
-        String jdbcurl ="jdbc:mysql://localhost:3306/climate";
+        String jdbcurl ="jdbc:mysql://localhost:3306/climate1";
         String username="root";
         String password="";
-        String filepath="server\\src\\main\\resources\\rawdata\\1.5.HadCRUT.analysis.summary_series.southern_hemisphere.monthly.csv";
+        String filepath="ClimateView\\server\\src\\main\\resources\\rawdata\\9.Global-GHG-Emissions-by-sector-based-on-WRI-2020.csv";
     
         int batchSize=20;
     
@@ -29,7 +32,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert into climatedata(years_calendar, temp) values(?,?)";
+            String sql="insert into v9data (company, gas) values(?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -45,7 +48,7 @@ public class databaseService {
                 String year= data[0];
                 String temp= data[1];
 
-                statement.setDouble(1, parseDouble(year));
+                statement.setInt(1, parseInt(year));
                 statement.setDouble(2, parseDouble(temp));
                 statement.addBatch();
                 if(count%batchSize==0){
@@ -62,7 +65,6 @@ public class databaseService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
     
 }

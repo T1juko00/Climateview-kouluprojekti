@@ -15,17 +15,18 @@ import { useState } from 'react';
 
 function App() {
 
-//If true = logged in and access to visualize, If false= not logged in and no access to vizualize
-  const [isUSerLoggedIn, setIsUSerLoggedIn] = useState(true);
+//If not null = logged in and access to visualize, If null= not logged in and no access to vizualize
+  const [UserJwt, setUserJwt] = useState(null);
+
 
   // blocks access to visualize if not logged in
   //blocks access to login/signin if logged in
   let authRoutes = <>
   <Route path="/signup" element={<SignUp />} />
-  <Route path="/login" element={<Login />} />
+  <Route path="/login" element={<Login login={newJwt =>  setUserJwt(newJwt)} />} />
   </>
 
-  if(isUSerLoggedIn == true) {
+  if(UserJwt != null) {
     authRoutes = <Route path="/visualize" element={<Visualize />} />
   }
 
@@ -36,10 +37,10 @@ function App() {
         <Header />
         <div className='container'>
           <Routes>
-            <Route path="/" element={<Home userLoggedIn={isUSerLoggedIn}/>} />
+            <Route path="/" element={<Home userLoggedIn={UserJwt != null}/>} />
             <Route path="/about" element={<About />} />
             { authRoutes }
-            <Route path="*"  element={<Home userLoggedIn={isUSerLoggedIn}/>} />
+            <Route path="*"  element={<Home userLoggedIn={UserJwt != null}/>} />
           </Routes>
         </div>
         <Footer />

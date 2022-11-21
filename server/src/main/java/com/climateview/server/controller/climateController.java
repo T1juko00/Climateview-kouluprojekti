@@ -15,7 +15,6 @@ import com.climateview.server.northservice.SecurityService;
 import com.climateview.server.northservice.V3_1_co2MonthlyService;
 import com.climateview.server.northservice.V3_co2AnnualService;
 
-
 import java.util.Base64;
 
 import org.springframework.http.HttpHeaders;
@@ -39,6 +38,7 @@ public class climateController {
     V3_1_co2MonthlyService pco2m;
     @Autowired
     V3_co2AnnualService pco2a;
+
 
     @GetMapping("allAnnual")
     public List<AnnualData> getAllAnnual(){
@@ -86,7 +86,6 @@ public class climateController {
     @GetMapping("V1_4Data")
     public List<AnnualData> getV1_4Data(){
         return pAnnualdata.getV1_4Data();
-        
     }
 
     @GetMapping("V3_1Data")
@@ -112,7 +111,6 @@ public class climateController {
         return pco2a.getV5Data();
         
     }
-
 
 
 

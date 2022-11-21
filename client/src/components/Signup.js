@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-//import Constants from "./Constants.json"
 import { useNavigate } from 'react-router-dom'
 
 export default function Signup() {
@@ -16,12 +15,12 @@ export default function Signup() {
 
     //Send a post request
 
-    /*try {
-      const result = await axios.post(Constants.API_ADDRESS + '/registerbasic', 
+    try {
+      const result = await axios.post("http://localhost:8080/register", 
       {
         username: event.target.username.value,
-        email: event.target.value,
-        password: event.target.password.value
+        password: event.target.password.value,
+        email: event.target.value
       });
     console.log(result);
 
@@ -37,7 +36,7 @@ export default function Signup() {
     } catch (error) {
     console.error(error);
     setSignupProcessState("singupFailure")
-    }*/
+    }
 
   }
   

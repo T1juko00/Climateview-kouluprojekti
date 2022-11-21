@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-// import Constants from './Constants.json'
+//import Constants from './Constants.json'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -8,11 +8,11 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleLoginSubmit = (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
-    /*try {
-      const result = await axios.post(Constants.API_ADDRESS + '/loginForJWT, 
+    try {
+      const result = await axios.post("http://localhost:8080/login",
       null,
       {
        auth: {
@@ -27,7 +27,7 @@ export default function Login() {
 
     } catch (error) {
     console.error(error);
-    }*/
+    }
 
   }
 

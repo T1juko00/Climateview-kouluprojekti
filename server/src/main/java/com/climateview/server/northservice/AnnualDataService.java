@@ -29,7 +29,7 @@ public class AnnualDataService {
     }
     
     public List<AnnualData> getV1_2Data(){
-        return pAnnual.getV2Data();
+        return pAnnual.getV1_2Data();
     }
 
     public List<AnnualData> getV1Data(){

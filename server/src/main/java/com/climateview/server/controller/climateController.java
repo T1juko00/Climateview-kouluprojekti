@@ -2,6 +2,7 @@ package com.climateview.server.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
@@ -14,9 +15,7 @@ import com.climateview.server.northservice.MonthlyDataService;
 import com.climateview.server.northservice.SecurityService;
 import com.climateview.server.northservice.V3_1_co2MonthlyService;
 import com.climateview.server.northservice.V3_co2AnnualService;
-
 import java.util.Base64;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,8 +25,12 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+@CrossOrigin
 @RestController
+
+
 public class climateController {
+
     @Autowired
     AnnualDataService pAnnualdata;
     @Autowired
@@ -38,6 +41,7 @@ public class climateController {
     V3_1_co2MonthlyService pco2m;
     @Autowired
     V3_co2AnnualService pco2a;
+
 
 
     @GetMapping("allAnnual")
@@ -103,7 +107,6 @@ public class climateController {
     @GetMapping("V3Data")
     public List<V3_co2_annualdata> getV3Data(){
         return pco2a.getV3Data();
-        
     }
 
     @GetMapping("V5Data")
@@ -112,16 +115,12 @@ public class climateController {
         
     }
 
-
-
     @PostMapping("register")
     public ResponseEntity<String> register(
-        @RequestParam String uname,
-        @RequestParam String pw,
-        @RequestParam String email)
+        @RequestParam String uname,String pw,String email)
         {
-            User u = secService.register(uname, pw, email);
-            return new ResponseEntity<>(u.username, HttpStatus.OK);
+          User u = secService.register(uname, pw, email); 
+          return new ResponseEntity<>(u.username, HttpStatus.OK);
         }
 
     @PostMapping("login")
@@ -172,8 +171,11 @@ public class climateController {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.TEXT_PLAIN);
             return new ResponseEntity<>(token, HttpStatus.OK);
+
+         
         }
 }
+   
    
    
    

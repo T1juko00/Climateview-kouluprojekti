@@ -5,39 +5,25 @@ import { useNavigate } from 'react-router-dom'
 export default function Signup() {
 
   const [signupProcessState, setSignupProcessState ] = useState("idle")
+  const [uname, setUname] = useState('');
+  const [pw, setPw] = useState('');
+  const [email, setEmail] = useState('')
+  
 
   const navigate = useNavigate();
 
-  const handleSignupSubmit = async (event) => {
+  const HandleSignupSubmit = async (event) => {
     event.preventDefault();
     setSignupProcessState("Processing");
-
-
+    const formData = new FormData();
+    formData.append('uname', uname);
+    formData.append('pw', pw);
+    formData.append('email',email);
     //Send a post request
-
-    try {
-      const result = await axios.post("http://localhost:8080/register", 
-      {
-        username: event.target.username.value,
-        password: event.target.password.value,
-        email: event.target.value
-      });
-    console.log(result);
-
-   setSignupProcessState("signupSuccess");
-
-   //timeout before navigating to login view
-   setTimeout(() =>{
-      navigate('/login', { replace: true });
-   }, 1500)
-
-
-
-    } catch (error) {
-    console.error(error);
-    setSignupProcessState("singupFailure")
-    }
-
+   
+      const result = await axios.post("http://localhost:8080/register",formData) 
+      navigate('/', { replace: true });
+      
   }
   
   // Handles signup button
@@ -60,22 +46,21 @@ export default function Signup() {
       signupUIControls= <span style={{ color: "red" }}>Error</span>
       break;
   }
-
   return (
     <div>
       <h2>Sign up</h2>
-      <form onSubmit={ handleSignupSubmit }>
+      <form onSubmit={ HandleSignupSubmit }>
         <div>
           Username <br />
-          <input type="text" name= "username" />
+          <input type="text" onChange={(e) => setUname(e.target.value)} />
         </div>
         <div>
           Email <br />
-          <input type="text" name= "email" />
+          <input type="text" onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           Password <br />
-          <input type="text" name= "password" />
+          <input type="password" onChange={(e) => setPw(e.target.value)} />
         </div>
         <div>
           { signupUIControls }
@@ -85,3 +70,6 @@ export default function Signup() {
     </div>
   )
 }
+
+
+

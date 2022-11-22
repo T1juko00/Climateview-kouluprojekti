@@ -105,7 +105,6 @@ import "chartjs-adapter-luxon";
         },
       },
       scales: {
-          
           yAxis: {
           type: "linear"
         },

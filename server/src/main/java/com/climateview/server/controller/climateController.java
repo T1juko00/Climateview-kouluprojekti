@@ -9,11 +9,13 @@ import com.climateview.server.data.MonthlyData;
 import com.climateview.server.data.User;
 import com.climateview.server.data.V3_1_co2_monthlydata;
 import com.climateview.server.data.V3_co2_annualdata;
+import com.climateview.server.data.V9Data;
 import com.climateview.server.northservice.AnnualDataService;
 import com.climateview.server.northservice.MonthlyDataService;
 import com.climateview.server.northservice.SecurityService;
 import com.climateview.server.northservice.V3_1_co2MonthlyService;
 import com.climateview.server.northservice.V3_co2AnnualService;
+import com.climateview.server.northservice.V9Service;
 
 import java.util.Base64;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,9 @@ public class climateController {
 
     @Autowired
     V3_co2AnnualService pco2a;
+
+    @Autowired
+    V9Service pGas;
 
 
 
@@ -108,6 +113,12 @@ public class climateController {
     @GetMapping("V5Data")
     public List<V3_co2_annualdata> getV5Data(){
         return pco2a.getV5Data();
+
+    }
+
+    @GetMapping("V9Data")
+    public List<V9Data> getV9Data(){
+        return pGas.getV9Data();
 
     }
 

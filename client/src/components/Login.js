@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
-export default function Login() {
+export default function Login(props) {
 
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const result = await axios.post("http://localhost:8080/login",
+      const result = await axios.post("http://localhost:8080/login?uname=abdul&pw=abdul1",
       null,
       {
        auth: {
@@ -20,13 +20,13 @@ export default function Login() {
         password: event.target.password.value
        }
       });
-    console.log(result);
-    const receivedJWT = result.data.token;
+      console.log(result);
+      const receivedJWT = result.data.token;
+      props.login(receivedJWT);
+      navigate('/', { replace: true });
 
-    navigate('/', { replace: true });
-
-    } catch (error) {
-    console.error(error);
+      } catch (error) {
+      console.error(error);
     }
 
   }

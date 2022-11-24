@@ -2,41 +2,56 @@ package com.climateview.server.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
 import com.climateview.server.data.User;
-import com.climateview.server.data.V3_1_co2_monthlydata;
-import com.climateview.server.data.V3_co2_annualdata;
+import com.climateview.server.data.V10Data;
+import com.climateview.server.data.co2_monthlydata;
+import com.climateview.server.data.co2_annualdata;
+import com.climateview.server.data.V9Data;
 import com.climateview.server.northservice.AnnualDataService;
 import com.climateview.server.northservice.MonthlyDataService;
 import com.climateview.server.northservice.SecurityService;
-import com.climateview.server.northservice.V3_1_co2MonthlyService;
-import com.climateview.server.northservice.V3_co2AnnualService;
+import com.climateview.server.northservice.V10Service;
+import com.climateview.server.northservice.co2MonthlyService;
+import com.climateview.server.northservice.co2AnnualService;
+import com.climateview.server.northservice.V9Service;
 
 import java.util.Base64;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+@CrossOrigin
 @RestController
+
+
 public class climateController {
+
     @Autowired
     AnnualDataService pAnnualdata;
     @Autowired
     MonthlyDataService pMonthlydata;
     @Autowired
     SecurityService secService;
+    @Autowired
+    co2MonthlyService pco2m;
+    @Autowired
+    co2AnnualService pco2a;
 
     @Autowired
-    V3_1_co2MonthlyService pco2m;
+    V9Service pemission;
 
     @Autowired
-    V3_co2AnnualService pco2a;
+    V10Service pEvent;
 
 
 
@@ -88,26 +103,74 @@ public class climateController {
         return pAnnualdata.getV1_4Data();
     }
 
+    @GetMapping("V7Data")
+    public List<AnnualData> getV7Data(){
+        return pAnnualdata.getV7Data();
+    }
+
     @GetMapping("V3_1Data")
-    public List<V3_1_co2_monthlydata> getV3_1Data(){
+    public List<co2_monthlydata> getV3_1Data(){
         return pco2m.getV3_1Data();
+        
     }
 
     @GetMapping("V6Data")
-    public List<V3_1_co2_monthlydata> getV6Data(){
+    public List<co2_monthlydata> getV6Data(){
         return pco2m.getV6Data();
+        
     }
 
     @GetMapping("V3Data")
-    public List<V3_co2_annualdata> getV3Data(){
+    public List<co2_annualdata> getV3Data(){
         return pco2a.getV3Data();
+    }
+
+    @GetMapping("V7_1Data")
+    public List<co2_annualdata> getV7_1Data(){
+        return pco2a.getV7_1Data();
     }
 
 
 
     @GetMapping("V5Data")
-    public List<V3_co2_annualdata> getV5Data(){
+    public List<co2_annualdata> getV5Data(){
         return pco2a.getV5Data();
+        
+    }
+
+    @GetMapping("V9Data")
+    public List<V9Data> getV9Data(){
+        return pemission.getV9Data();
+
+    }
+
+    @GetMapping("V9_1Data")
+    public List<V9Data> getV9_1Data(){
+        return pemission.getV9_1Data();
+
+    }
+
+    @GetMapping("V9_2Data")
+    public List<V9Data> getV9_2Data(){
+        return pemission.getV9_2Data();
+
+    }
+
+    @GetMapping("V4Data")
+    public List<co2_annualdata> getV4Data(){
+        return pco2a.getV4Data();
+
+    }
+
+    @GetMapping("V10_7Data")
+    public List<V10Data> getV10_7Data(){
+        return pEvent.getV10_7Data();
+
+    }
+
+    @GetMapping("V10_4Data")
+    public List<V10Data> getV10_4Data(){
+        return pEvent.getV10_4Data();
 
     }
 
@@ -115,12 +178,10 @@ public class climateController {
 
     @PostMapping("register")
     public ResponseEntity<String> register(
-        @RequestParam String uname,
-        @RequestParam String pw,
-        @RequestParam String email)
+        @RequestParam String uname,String pw,String email)
         {
-            User u = secService.register(uname, pw, email);
-            return new ResponseEntity<>(u.username, HttpStatus.OK);
+          User u = secService.register(uname, pw, email); 
+          return new ResponseEntity<>(u.username, HttpStatus.OK);
         }
 
     @PostMapping("login")
@@ -168,9 +229,14 @@ public class climateController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.TEXT_PLAIN);
             return new ResponseEntity<>(token, HttpStatus.OK);
+
+         
         }
 }
+   
    
    
    

@@ -16,7 +16,7 @@ import "chartjs-adapter-luxon";
     let southAnnual = "http://localhost:8080/V1_4Data"
     let southMonthly = "http://localhost:8080/V1_5DATA"
     let v2Data = "http://localhost:8080/V2Data" 
-    
+
     const request1 = axios.get(globalAnnual);
     const request2 = axios.get(globalMonthy);
     const request3 = axios.get(northAnnual)
@@ -35,11 +35,16 @@ import "chartjs-adapter-luxon";
         const southYear = responses[4].data
         const southMonth = responses[5].data
         const v2Year = responses[6].data
+
+        const testi = globalYear.map(d => d.year + 0.01)
+        console.log(testi);
+        console.log(globalMonth);
+        
       
-                    
+                     
           setChartData({
            
-            labels: globalMonth.map(d => d.years_calendar),
+            labels: v2Year.map(d => d.year),
             datasets: [
                 {
                 label: 'Global Annual',
@@ -105,7 +110,6 @@ import "chartjs-adapter-luxon";
         },
       },
       scales: {
-          
           yAxis: {
           type: "linear"
         },

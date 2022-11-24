@@ -13,16 +13,16 @@ public class V9Data {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String company;
-    private double gas;
+    private String sector;
+    private double emission;
     private String ClassId;
 
     public V9Data() {
     }
 
-    public V9Data(String company, double gas, String ClassId) {
-        this.company = company;
-        this.gas = gas;
+    public V9Data(String sector, double emission, String ClassId) {
+        this.sector = sector;
+        this.emission = emission;
         this.ClassId = ClassId;
     }
 
@@ -30,20 +30,20 @@ public class V9Data {
         return this.id;
     }
 
-    public String getCompany() {
-        return this.company;
+    public String getsector() {
+        return this.sector;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setsector(String sector) {
+        this.sector = sector;
     }
 
-    public double getGas() {
-        return this.gas;
+    public double getemission() {
+        return this.emission;
     }
 
-    public void setGas(double gas) {
-        this.gas = gas;
+    public void setemission(double emission) {
+        this.emission = emission;
     }
 
     public String getClassId() {

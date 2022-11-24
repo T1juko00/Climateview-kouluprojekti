@@ -32,7 +32,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert into v9data (company, gas) values(?,?)";
+            String sql="insert v9data (sector,emission ) values(?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -48,7 +48,7 @@ public class databaseService {
                 String year= data[0];
                 String temp= data[1];
 
-                statement.setInt(1, parseInt(year));
+                statement.setString(1, (year));
                 statement.setDouble(2, parseDouble(temp));
                 statement.addBatch();
                 if(count%batchSize==0){

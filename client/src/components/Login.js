@@ -1,47 +1,48 @@
 import React from 'react'
 import axios from 'axios'
+import { useState } from 'react'
+import Home from './Home'
+import App from '../App'
 //import Constants from './Constants.json'
 import { useNavigate } from 'react-router-dom'
 
-
 export default function Login() {
+  const [uname, setUname] = useState('');
+  const [pw, setPw] = useState('');
 
   const navigate = useNavigate();
-
-  const handleLoginSubmit = async (event) => {
+  
+  function CredentialsAsRequestParams(event) {
     event.preventDefault();
 
+    const formData = new FormData();
+    formData.append('uname', uname);
+    formData.append('pw', pw);
+
+    //Save response token in localstorage
     try {
-      const result = await axios.post("http://localhost:8080/login",
-      null,
-      {
-       auth: {
-        username: event.target.username.value,
-        password: event.target.password.value
-       }
-      });
-    console.log(result);
-    const receivedJWT = result.data.token;
+       axios.post('http://localhost:8080/login', formData)
+      .then(response => localStorage.setItem("token", response.data))
+      .catch(e=>console.log(e.message))
+      navigate('/', { replace: true });
 
-    navigate('/', { replace: true });
-
-    } catch (error) {
-    console.error(error);
+    } 
+    catch (error) {
+      console.error(error)
     }
-
+    
   }
-
     return (
         <div>
            <h2>Log in</h2>
-      <form onSubmit = { handleLoginSubmit }>
+      <form onSubmit = { CredentialsAsRequestParams }>
         <div>
           Username <br />
-          <input type="text" name= "username" />
+          <input type="text" onChange={(e) => {setUname(e.target.value);}} />
         </div>
         <div>
           Password <br />
-          <input type="text" name= "password" />
+          <input type="password" onChange={(e) => {setPw(e.target.value);}} />
         </div>
         <div>
           <button type="submit">Login</button>
@@ -50,4 +51,4 @@ export default function Login() {
             
         </div>
     )
-}
+    }

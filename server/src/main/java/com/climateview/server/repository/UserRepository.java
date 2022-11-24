@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.climateview.server.data.User;
 
 @Repository
-public interface PersonRepository extends JpaRepository<User,String>{
+public interface UserRepository extends JpaRepository<User,String>{
 
 }

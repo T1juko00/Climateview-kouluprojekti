@@ -2,23 +2,21 @@ package com.climateview.server.northservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.climateview.server.data.User;
-import com.climateview.server.repository.PersonRepository;
+import com.climateview.server.repository.UserRepository;
 import com.climateview.server.security.MyPasswordEncoder;
 
 @Service
 public class SecurityService {
     
     @Autowired
-    PersonRepository repo;
+    UserRepository repo;
 
     @Autowired
     MyPasswordEncoder myEncoder;
@@ -32,13 +30,12 @@ public class SecurityService {
      * @param pw
      * @return
      */
+    
     public User register(String uname, String pw, String email){
-       
         User u = new User(uname, myEncoder.encode(pw), email);
         repo.save(u);
         return u;
     }
-
     /**
      * Login user. Return token or null if not found or wrong password.
      * @param uname
@@ -52,7 +49,6 @@ public class SecurityService {
         if(u == null || !myEncoder.matches(pw, u.password) ){
             return null;
         }
-
         Algorithm alg = Algorithm.HMAC256(jwtKey);
         return JWT.create().withSubject(u.username).sign(alg);
     }
@@ -73,5 +69,9 @@ public class SecurityService {
         }
 
         return null;
+    }
+
+    public User save(User user) {
+        return repo.save(user);
     }
 }

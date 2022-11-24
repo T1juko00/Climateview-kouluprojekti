@@ -12,18 +12,21 @@ import "chartjs-adapter-luxon";
     let globalAnnual = "http://localhost:8080/V3Data"
     let globalMonthy = "http://localhost:8080/V3_1Data"
     let v4data = "http://localhost:8080/V4Data"
+    let eventData = "http://localhost:8080/V10_4Data"
      
     const request1 = axios.get(globalAnnual);
     const request2 = axios.get(globalMonthy);
     const request3 = axios.get(v4data);
+    const request4 = axios.get(eventData)
     
    
 
     const Chart = () => { 
-      axios.all([request1, request2, request3 ]).then(axios.spread((...responses) => {
+      axios.all([request1, request2, request3,request4 ]).then(axios.spread((...responses) => {
         const globalYear = responses[0].data
         const globalMonth = responses[1].data
         const V4Data = responses[2].data
+        const event = responses[3].data
     
           setChartData({
            
@@ -47,6 +50,13 @@ import "chartjs-adapter-luxon";
                   backgroundColor: 'violet',
                   borderColour: 'violet'
                 },
+                {  
+                  label: 'Notable events in human history',
+                  data: event.map(d => d.event),
+                  backgroundColor: 'purple',
+                  borderColour: 'purple'
+                },
+
             ],
             
           }); 

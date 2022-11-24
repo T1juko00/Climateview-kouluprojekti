@@ -5,13 +5,14 @@ import Header from './components/Header';
 import Home from './components/Home.js';
 import About from './components/About';
 import Footer from './components/Footer';
-import NotFound from './components/NotFound';
-import Visualize from './components/Visualize';
 import Login from './components/Login';
 import SignUp from "./components/Signup";
+import V1_V7Graphs from './components/V1-V7Graphs';
+import ViewBars from './components/ViewBars';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+//
 import {Buffer} from "buffer";
 
 function App() {
@@ -26,17 +27,18 @@ function App() {
   <Route path="/login" element={<Login login={newJwt =>  setUserJwt(newJwt)} />} />
   </>
 
-  if(UserJwt != null) {
-    authRoutes = <Route path="/visualize" element={<Visualize />} />
+ /*if(UserJwt != null) {
+    
   }
-
+*/
   return (
     <>
         <Navbar />
         <Header />
         <div className='container'>
           <Routes>
-            <Route path="/visualize" element={<Visualize />} />
+            <Route path="/V1_V7Graphs" element={<V1_V7Graphs />} />
+            <Route path="/viewbars" element={<ViewBars />} />
             <Route path="/" element={<Home userLoggedIn={UserJwt != null}/>} />
             <Route path="/about" element={<About />} />
             { authRoutes }

@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
 import com.climateview.server.data.User;
-import com.climateview.server.data.V3_1_co2_monthlydata;
-import com.climateview.server.data.V3_co2_annualdata;
+import com.climateview.server.data.V10Data;
+import com.climateview.server.data.co2_monthlydata;
+import com.climateview.server.data.co2_annualdata;
 import com.climateview.server.data.V9Data;
 import com.climateview.server.northservice.AnnualDataService;
 import com.climateview.server.northservice.MonthlyDataService;
 import com.climateview.server.northservice.SecurityService;
-import com.climateview.server.northservice.V3_1_co2MonthlyService;
-import com.climateview.server.northservice.V3_co2AnnualService;
+import com.climateview.server.northservice.V10Service;
+import com.climateview.server.northservice.co2MonthlyService;
+import com.climateview.server.northservice.co2AnnualService;
 import com.climateview.server.northservice.V9Service;
 
 import java.util.Base64;
@@ -41,12 +43,15 @@ public class climateController {
     @Autowired
     SecurityService secService;
     @Autowired
-    V3_1_co2MonthlyService pco2m;
+    co2MonthlyService pco2m;
     @Autowired
-    V3_co2AnnualService pco2a;
+    co2AnnualService pco2a;
 
     @Autowired
     V9Service pemission;
+
+    @Autowired
+    V10Service pEvent;
 
 
 
@@ -98,25 +103,37 @@ public class climateController {
         return pAnnualdata.getV1_4Data();
     }
 
+    @GetMapping("V7Data")
+    public List<AnnualData> getV7Data(){
+        return pAnnualdata.getV7Data();
+    }
+
     @GetMapping("V3_1Data")
-    public List<V3_1_co2_monthlydata> getV3_1Data(){
+    public List<co2_monthlydata> getV3_1Data(){
         return pco2m.getV3_1Data();
         
     }
 
     @GetMapping("V6Data")
-    public List<V3_1_co2_monthlydata> getV6Data(){
+    public List<co2_monthlydata> getV6Data(){
         return pco2m.getV6Data();
         
     }
 
     @GetMapping("V3Data")
-    public List<V3_co2_annualdata> getV3Data(){
+    public List<co2_annualdata> getV3Data(){
         return pco2a.getV3Data();
     }
 
+    @GetMapping("V7_1Data")
+    public List<co2_annualdata> getV7_1Data(){
+        return pco2a.getV7_1Data();
+    }
+
+
+
     @GetMapping("V5Data")
-    public List<V3_co2_annualdata> getV5Data(){
+    public List<co2_annualdata> getV5Data(){
         return pco2a.getV5Data();
         
     }
@@ -136,6 +153,24 @@ public class climateController {
     @GetMapping("V9_2Data")
     public List<V9Data> getV9_2Data(){
         return pemission.getV9_2Data();
+
+    }
+
+    @GetMapping("V4Data")
+    public List<co2_annualdata> getV4Data(){
+        return pco2a.getV4Data();
+
+    }
+
+    @GetMapping("V10_7Data")
+    public List<V10Data> getV10_7Data(){
+        return pEvent.getV10_7Data();
+
+    }
+
+    @GetMapping("V10_4Data")
+    public List<V10Data> getV10_4Data(){
+        return pEvent.getV10_4Data();
 
     }
 

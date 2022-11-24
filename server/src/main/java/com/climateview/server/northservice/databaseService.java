@@ -20,7 +20,7 @@ public class databaseService {
         String jdbcurl ="jdbc:mysql://localhost:3306/climate1";
         String username="root";
         String password="";
-        String filepath="server\\src\\main\\resources\\rawdata\\V7.csv";
+        String filepath="server\\src\\main\\resources\\rawdata\\7.Source Data - Figure 1.csv";
     
         int batchSize=20;
     
@@ -32,7 +32,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert into co2_annualdata (co2, year) values(?,?)";
+            String sql="insert into co2_annualdata (year, co2) values(?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 

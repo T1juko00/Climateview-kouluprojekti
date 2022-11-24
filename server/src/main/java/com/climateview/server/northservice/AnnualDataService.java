@@ -39,6 +39,10 @@ public class AnnualDataService {
     public List<AnnualData> getV1_4Data(){
         return pAnnual.getV1_4Data();
     }
+
+    public List<AnnualData> getV7Data(){
+        return pAnnual.getV7Data();
+    }
     
     
     

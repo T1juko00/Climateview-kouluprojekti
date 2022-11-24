@@ -46,7 +46,7 @@ public class climateController {
     V3_co2AnnualService pco2a;
 
     @Autowired
-    V9Service pGas;
+    V9Service pemission;
 
 
 
@@ -123,7 +123,19 @@ public class climateController {
 
     @GetMapping("V9Data")
     public List<V9Data> getV9Data(){
-        return pGas.getV9Data();
+        return pemission.getV9Data();
+
+    }
+
+    @GetMapping("V9_1Data")
+    public List<V9Data> getV9_1Data(){
+        return pemission.getV9_1Data();
+
+    }
+
+    @GetMapping("V9_2Data")
+    public List<V9Data> getV9_2Data(){
+        return pemission.getV9_2Data();
 
     }
 

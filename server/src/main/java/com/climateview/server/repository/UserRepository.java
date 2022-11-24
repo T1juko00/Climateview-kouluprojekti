@@ -9,6 +9,4 @@ import com.climateview.server.data.User;
 @Repository
 public interface UserRepository extends JpaRepository<User,String>{
 
-   
-
 }

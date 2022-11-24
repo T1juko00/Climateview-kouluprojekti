@@ -14,5 +14,10 @@ public interface V3_co2AnnualRepo extends JpaRepository<V3_co2_annualdata, Long>
     @Query(value = "SELECT * FROM co2_annualdata WHERE class_id = 'V5'", nativeQuery = true)
     List<V3_co2_annualdata> getV5Data();
     
+    @Query(value = "SELECT * FROM co2_annualdata WHERE class_id = 'V4'", nativeQuery = true)
+    List<V3_co2_annualdata> getV4Data();
+    
+    @Query(value = "SELECT * FROM co2_annualdata WHERE class_id = 'V7.1'", nativeQuery = true)
+    List<V3_co2_annualdata> getV7_1Data();
     
 }

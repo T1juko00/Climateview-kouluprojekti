@@ -22,5 +22,13 @@ public class V3_co2AnnualService {
         return pCo2.getV5Data();
     } 
 
+    public List<V3_co2_annualdata> getV4Data(){
+        return pCo2.getV4Data();
+    } 
+
+    public List<V3_co2_annualdata> getV7_1Data(){
+        return pCo2.getV7_1Data();
+    } 
+
     
 }

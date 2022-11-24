@@ -27,7 +27,7 @@ function App() {
   </>
 
   if(UserJwt != null) {
-    authRoutes = <Route path="/visualize" element={<Visualize />} />
+    
   }
 
   return (
@@ -36,7 +36,7 @@ function App() {
         <Header />
         <div className='container'>
           <Routes>
-            <Route path="/visualize" element={<Visualize />} />
+          <Route path="/visualize" element={<Visualize />} />
             <Route path="/" element={<Home userLoggedIn={UserJwt != null}/>} />
             <Route path="/about" element={<About />} />
             { authRoutes }

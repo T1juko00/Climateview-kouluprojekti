@@ -98,6 +98,11 @@ public class climateController {
         return pAnnualdata.getV1_4Data();
     }
 
+    @GetMapping("V7Data")
+    public List<AnnualData> getV7Data(){
+        return pAnnualdata.getV7Data();
+    }
+
     @GetMapping("V3_1Data")
     public List<V3_1_co2_monthlydata> getV3_1Data(){
         return pco2m.getV3_1Data();
@@ -115,6 +120,13 @@ public class climateController {
         return pco2a.getV3Data();
     }
 
+    @GetMapping("V7_1Data")
+    public List<V3_co2_annualdata> getV7_1Data(){
+        return pco2a.getV7_1Data();
+    }
+
+
+
     @GetMapping("V5Data")
     public List<V3_co2_annualdata> getV5Data(){
         return pco2a.getV5Data();
@@ -124,6 +136,12 @@ public class climateController {
     @GetMapping("V9Data")
     public List<V9Data> getV9Data(){
         return pGas.getV9Data();
+
+    }
+
+    @GetMapping("V4Data")
+    public List<V3_co2_annualdata> getV4Data(){
+        return pco2a.getV4Data();
 
     }
 

@@ -21,4 +21,7 @@ public interface AnnualDataRepo extends JpaRepository<AnnualData,Long>{
 
     @Query(value = "SELECT * FROM annual_data WHERE class_id = 'V1.4'", nativeQuery = true)
     List<AnnualData> getV1_4Data();
+
+    @Query(value = "SELECT * FROM annual_data WHERE class_id = 'V7'", nativeQuery = true)
+    List<AnnualData> getV7Data();
 }

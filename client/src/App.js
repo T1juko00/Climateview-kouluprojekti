@@ -12,7 +12,7 @@ import SignUp from "./components/Signup";
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import {Buffer} from "buffer";
+//import {Buffer} from "buffer";
 
 function App() {
 

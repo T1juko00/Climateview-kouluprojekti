@@ -1,5 +1,7 @@
 package com.climateview.server.northservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class SecurityService {
 
     @Autowired
     MyPasswordEncoder myEncoder;
+
 
     @Value("${jwt.secret}")
     private String jwtKey;
@@ -74,4 +77,14 @@ public class SecurityService {
     public User save(User user) {
         return repo.save(user);
     }
+
+    public void deleteUsername(String username) {
+
+        repo.deleteById(username);
+    }
+
+    public List<User> getUsers(){
+        return repo.findAll();
+    }
+
 }

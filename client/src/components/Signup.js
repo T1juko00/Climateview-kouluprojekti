@@ -8,8 +8,6 @@ export default function Signup() {
   const [uname, setUname] = useState('');
   const [pw, setPw] = useState('');
   const [email, setEmail] = useState('')
-  
-
   const navigate = useNavigate();
 
   const HandleSignupSubmit = async (event) => {
@@ -19,11 +17,24 @@ export default function Signup() {
     formData.append('uname', uname);
     formData.append('pw', pw);
     formData.append('email',email);
+
     //Send a post request
-   
-      const result = await axios.post("http://localhost:8080/register",formData) 
-      navigate('/', { replace: true });
-      
+   try {
+    const result = await axios.post("http://localhost:8080/register",formData) 
+    setSignupProcessState("signupSuccess");
+    console.log(result);
+
+   //Timeout before navigating to login view
+   setTimeout(() =>{
+      navigate('/login', { replace: true });
+   }, 1500)
+
+   } catch (error) {
+
+    console.error(error);
+    setSignupProcessState("SignUpFailure")
+
+   }
   }
   
   // Handles signup button

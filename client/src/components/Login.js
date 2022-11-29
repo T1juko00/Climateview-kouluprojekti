@@ -1,9 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import Home from './Home'
+import App from '../App'
 //import Constants from './Constants.json'
 import { useNavigate } from 'react-router-dom'
-
 
 export default function Login() {
   const [uname, setUname] = useState('');
@@ -11,7 +12,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   
-  function CredentialsAsRequestParams(event){
+  function CredentialsAsRequestParams(event) {
     event.preventDefault();
 
     const formData = new FormData();
@@ -19,13 +20,18 @@ export default function Login() {
     formData.append('pw', pw);
 
     //Save response token in localstorage
-    
-    axios.post('http://localhost:8080/login', formData)
+    try {
+       axios.post('http://localhost:8080/login', formData)
       .then(response => localStorage.setItem("token", response.data))
       .catch(e=>console.log(e.message))
       navigate('/', { replace: true });
+
+    } 
+    catch (error) {
+      console.error(error)
+    }
+    
   }
- 
     return (
         <div>
            <h2>Log in</h2>

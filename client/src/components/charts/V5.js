@@ -55,11 +55,19 @@ import {Chart as ChartJS} from "chart.js/auto";
         },
       },
       scales: {
-          
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Co2 concentration (ppmv)",
+          },
         },
-        
+        xAxis: {
+          title: {
+           display: true,
+           text: "Years BP (before present)",
+          }
+        }
       },
     };
     

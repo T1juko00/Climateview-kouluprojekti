@@ -1,8 +1,4 @@
 import React from "react";
-import V2 from './charts/V2'
-import V3 from './charts/V3'
-import V5 from './charts/V5'
-import V6 from './charts/V6'
 import V1_V7Graphs from "./V1-V7Graphs";
 import V8_V9Graphs from "./V8-V9Graphs";
 import {Routes, Route, useNavigate} from 'react-router-dom'

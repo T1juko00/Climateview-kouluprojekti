@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS} from "chart.js/auto";
-import "chartjs-adapter-luxon";
+//import "chartjs-adapter-luxon";
 
 
    export default function V5 () {
@@ -55,11 +55,19 @@ import "chartjs-adapter-luxon";
         },
       },
       scales: {
-          
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Co2 concentration (ppmv)",
+          },
         },
-        
+        xAxis: {
+          title: {
+           display: true,
+           text: "Years BP (before present)",
+          }
+        }
       },
     };
     

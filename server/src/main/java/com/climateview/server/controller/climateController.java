@@ -3,7 +3,9 @@ package com.climateview.server.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
@@ -175,6 +177,11 @@ public class climateController {
     }
 
 
+    @GetMapping("users")
+    public List<User> getUsers() {
+        return secService.getUsers();
+    }
+
 
     @PostMapping("register")
     public ResponseEntity<String> register(
@@ -211,6 +218,14 @@ public class climateController {
 
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
+
+
+    @DeleteMapping("delete/user/{username}")
+    public ResponseEntity<Void> deleteUsername(@PathVariable String username){
+        secService.deleteUsername(username);
+        return ResponseEntity.ok().build();
+    }
+
 
     @PostMapping("loginbasic")
     public ResponseEntity<String> loginBasic(@RequestHeader("Authorization") String basicAuth)

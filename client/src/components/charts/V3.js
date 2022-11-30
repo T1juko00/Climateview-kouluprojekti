@@ -28,38 +28,79 @@ import "chartjs-adapter-luxon";
         const V4Data = responses[2].data
         const event = responses[3].data
     
-          setChartData({
+          let muuttuja = {
            
-            labels: globalMonth.map(d => d.year_monthly),
+            
             datasets: [
                 {
                 label: 'Annual mean',
-                data: globalYear.map(d => d.co2),
+                data: globalYear.map(d =>{
+                  let newformat = {
+                    co2: d.co2,
+                    year: d.year.toString()
+                  }
+                  return newformat
+                } ),
                 backgroundColor: 'red',
-                borderColour: 'red'               
+                borderColour: 'red',
+                parsing: {
+                  xAxisKey: "year",
+                  yAxisKey: "co2",
+                }               
               },             
                 {  
                   label: 'Monthly mean',
-                  data: globalMonth.map(d => d.co2),
+                  data: globalMonth.map(d =>{
+                    let newformat = {
+                      co2: d.co2,
+                      year_monthly: d.year_monthly.toString().substring(0,4) + "-" + d.year_monthly.toString().substring(5,7).padEnd(2,"0") + "-01"
+                    }
+                    return newformat
+                  } ),
                   backgroundColor: 'blue',
-                  borderColour: 'blue'
+                  borderColour: 'blue',
+                  parsing: {
+                    xAxisKey: "year_monthly",
+                    yAxisKey: "co2",
+                  }   
                 },
                 {  
                   label: 'V4',
-                  data: V4Data.map(d => d.co2),
+                  data: V4Data.map(d =>{
+                    let newformat = {
+                      co2: d.co2,
+                      year: d.year.toString()
+                    }
+                    return newformat
+                  } ),
                   backgroundColor: 'violet',
-                  borderColour: 'violet'
+                  borderColour: 'violet',
+                  parsing: {
+                    xAxisKey: "year",
+                    yAxisKey: "co2",
+                  }
                 },
                 {  
                   label: 'Notable events in human history',
-                  data: event.map(d => d.event),
+                  data: event.map(d =>{
+                    let newformat = {
+                      event:  440 + d.event,
+                      year: d.year.toString()
+                    }
+                    return newformat
+                  } ),
                   backgroundColor: 'purple',
-                  borderColour: 'purple'
+                  borderColour: 'purple',
+                  parsing: {
+                    xAxisKey: "year",
+                    yAxisKey: "event"
+                  }
                 },
-
-            ],
+              ],
             
-          }); 
+          
+        }
+          setChartData(muuttuja); 
           setisloading(false)
         })).catch(error => {
           alert(error)
@@ -80,9 +121,14 @@ import "chartjs-adapter-luxon";
         },
       },
       scales: {
-          
           yAxis: {
           type: "linear"
+        },
+        xAxis : {
+          type: "time",
+          time: {
+            unit: "month",
+          },
         },
         
       },

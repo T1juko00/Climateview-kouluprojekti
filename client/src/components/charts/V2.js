@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS} from "chart.js/auto";
-//import "chartjs-adapter-luxon";
+import "chartjs-adapter-luxon";
 
 
    export default function V2 () {
@@ -40,57 +40,130 @@ import {Chart as ChartJS} from "chart.js/auto";
         console.log(testi);
         console.log(globalMonth);
         
-      
-                     
-          setChartData({
+      let muuttuja = {
            
-            labels: v2Year.map(d => d.year),
-            datasets: [
-                {
-                label: 'Global Annual',
-                data: globalYear.map(d => d.temp),
-                backgroundColor: 'red',
-                borderColour: 'red' 
-              }, 
-                {  
-                  label: 'Global Monthly',
-                  data: globalMonth.map(d => d.temp),
-                  backgroundColor: 'blue',
-                  borderColour: 'blue'
-                },
-                { 
-                  label: 'Northern Annual',
-                  data: northYear.map(d => d.temp),
-                  backgroundColor: 'green',
-                  borderColour: 'green'
-                },
-                {
-                  label: 'Northern Monthly',
-                  data: northMonth.map(d => d.temp),
-                  backgroundColor: 'yellow',
-                  borderColour: 'yellow'
-                },
-                {
-                  label: 'Southern Annual',
-                  data: southYear.map(d => d.temp),
-                  backgroundColor: 'purple',
-                  borderColour: 'purple'
-                },
-                {
-                  label: 'Southern Monthly',
-                  data: southMonth.map(d => d.temp),
-                  backgroundColor: 'pink',
-                  borderColour: 'pink'
-                },
-                {
-                  label: 'V2 Data',
-                  data: v2Year.map(d => d.temp),
-                  backgroundColor: 'violet',
-                  borderColour: 'violet'
-                },
-            ],
-          }); 
+           
+        datasets: [
+            {
+            label: 'Global Annual',
+            data: globalYear.map(d =>{
+              let newformat = {
+                temp: d.temp,
+                year: d.year.toString()
+              }
+              return newformat
+            } ),
+            backgroundColor: 'red',
+            borderColour: 'red',
+            parsing: {
+              xAxisKey: "year",
+              yAxisKey: "temp",
+            }
+        
+          }, 
+            {  
+              label: 'Global Monthly',
+              data: globalMonth.map(d =>{
+                let newformat = {
+                  temp: d.temp,
+                  years_calendar: d.years_calendar.toString().substring(0,4) + "-" + d.years_calendar.toString().substring(5,7).padEnd(2,"0") + "-01"
+                }
+                return newformat
+              } ),
+              backgroundColor: 'blue',
+              borderColour: 'blue',
+              parsing: {
+                xAxisKey: "years_calendar",
+                yAxisKey: "temp",
+              } 
+            },
+            { 
+              label: 'Northern Annual',
+              data: northYear.map(d => {
+                let newFormat = {
+                  temp: d.temp,
+                  year: d.year.toString()
+                }
+                return newFormat
+              }),
+              backgroundColor: 'green',
+              borderColour: 'green',
+              parsing:{
+                xAxisKey: "year",
+                yAxisKey: "temp"
+              }
+            },
+            {
+              label: 'Northern Monthly',
+              data: northMonth.map(d =>{
+                let newformat = {
+                  temp: d.temp,
+                  years_calendar: d.years_calendar.toString().substring(0,4) + "-" + d.years_calendar.toString().substring(5,7).padEnd(2,"0") + "-01"
+                }
+                return newformat
+              } ),
+              backgroundColor: 'yellow',
+              borderColour: 'yellow',
+              parsing: {
+                xAxisKey: "years_calendar",
+                yAxisKey: "temp",
+              } 
+            },
+            {
+              label: 'Southern Annual',
+              data: southYear.map(d => {
+                let newFormat = {
+                  temp: d.temp,
+                  year: d.year.toString()
+                }
+                return newFormat
+              }),
+              backgroundColor: 'purple',
+              borderColour: 'purple',
+              parsing: {
+                xAxisKey: "year",
+                yAxisKey: "temp",
+              } 
+            },
+            {
+              label: 'Southern Monthly',
+              data: southMonth.map(d =>{
+                let newformat = {
+                  temp: d.temp,
+                  years_calendar: d.years_calendar.toString().substring(0,4) + "-" + d.years_calendar.toString().substring(5,7).padEnd(2,"0") + "-01"
+                }
+                return newformat
+              } ),
+              backgroundColor: 'pink',
+              borderColour: 'pink',
+              parsing: {
+                xAxisKey: "years_calendar",
+                yAxisKey: "temp",
+              }
+
+            },
+            {
+              label: 'V2 Data',
+              data: v2Year.map(d => {
+                let newFormat = {
+                  temp: d.temp,
+                  year: d.year.toString().padStart(4,"0")
+                }
+                return newFormat
+              }),
+              backgroundColor: 'violet',
+              borderColour: 'violet',
+              parsing: {
+                xAxisKey: "year",
+                yAxisKey: "temp",
+              } 
+            },
+        ],
+      }
+                     
+          setChartData(muuttuja); 
           setisloading(false)
+          debugger
         })).catch(error => {
           alert(error)
           setisloading(true)
@@ -113,7 +186,12 @@ import {Chart as ChartJS} from "chart.js/auto";
           yAxis: {
           type: "linear"
         },
-        
+        xAxis : {
+          type: "time",
+          time: {
+            unit: "month",
+          },
+        }
       },
     };
     
@@ -144,7 +222,7 @@ import {Chart as ChartJS} from "chart.js/auto";
           </p>
         </div>
     );
-  } } 
+  } }
 
   
 

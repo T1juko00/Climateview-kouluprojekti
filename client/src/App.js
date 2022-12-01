@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import SignUp from "./components/Signup";
 import V1_V7Graphs from './components/V1-V7Graphs';
+import V8_V9Graphs from './components/V8-V9Graphs';
 import ViewBars from './components/ViewBars';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
@@ -39,6 +40,7 @@ function App() {
         <div className='container'>
           <Routes>
             <Route path="/V1_V7Graphs" element={<V1_V7Graphs />} />
+            <Route path="/V8_V9Graphs" element={<V8_V9Graphs />} />
             <Route path="/viewbars" element={<ViewBars />} />
             <Route path="/" element={<Home userLoggedIn={UserJwt != null}/>} />
             <Route path="/about" element={<About />} />

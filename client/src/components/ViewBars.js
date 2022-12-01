@@ -1,9 +1,6 @@
 import React from "react";
-import V2 from './charts/V2'
-import V3 from './charts/V3'
-import V5 from './charts/V5'
-import V6 from './charts/V6'
 import V1_V7Graphs from "./V1-V7Graphs";
+import V8_V9Graphs from "./V8-V9Graphs";
 import {Routes, Route, useNavigate} from 'react-router-dom'
 import { useEffect } from "react";
 import styled from 'styled-components';
@@ -23,6 +20,10 @@ export default function ViewBars(){
     navigate('/V1_V7Graphs');
   };
 
+  const NavigateToV8_V9 = () => {
+    navigate('/V8_V9Graphs');
+  };
+
 return(
  <> 
 
@@ -30,7 +31,7 @@ return(
   <div>
   <Button id="button" onClick={NavigateToV1_V7}>V1-V7&V10 graphs</Button>
   <br></br>
-  <Button id="button">V8 Graph</Button>
+  <Button id="button" onClick={NavigateToV8_V9}>V8 & V9 Graphs</Button>
   </div>
 
   </>

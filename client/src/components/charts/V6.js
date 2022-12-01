@@ -53,8 +53,18 @@ import {Chart as ChartJS} from "chart.js/auto";
       scales: {
           
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Co2 measurement ppm (parts per million)"
+          }
         },
+        xAxis: {
+          title: {
+            display: true,
+            text: "Years calBP (calendar years before present)"
+          }
+        }
         
       },
     };

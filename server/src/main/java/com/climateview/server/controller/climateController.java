@@ -193,7 +193,7 @@ public class climateController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(
-        @RequestParam String uname, 
+        @RequestParam String uname,
         @RequestParam String pw)
         {
             String token = secService.login(uname, pw);

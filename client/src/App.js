@@ -1,5 +1,6 @@
 import React from 'react';
 import'./App.css';
+import DeleteUser from './components/DeleteUser';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Home from './components/Home.js';
@@ -12,6 +13,7 @@ import ViewBars from './components/ViewBars';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import NotFound from "./components/NotFound";
 //import {Buffer} from "buffer";
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
             <Route path="/viewbars" element={<ViewBars />} />
             <Route path="/" element={<Home userLoggedIn={UserJwt != null}/>} />
             <Route path="/about" element={<About />} />
+            <Route path="/notfound" element={<NotFound />} />
+            <Route path="/DeleteUser" element={<DeleteUser />} />
             { authRoutes }
             <Route path="*"  element={<Home userLoggedIn={UserJwt != null}/>} />
           </Routes>

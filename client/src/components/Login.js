@@ -46,7 +46,7 @@ export default function Login() {
             <input type="password" onChange={(e) => {setPw(e.target.value);}}/>
             </div>
             <div>
-          <Button block="true" type="submit">Login</Button>
+          <button block="true" type="submit">Login</button>
           </div>
         </form>
       </div>

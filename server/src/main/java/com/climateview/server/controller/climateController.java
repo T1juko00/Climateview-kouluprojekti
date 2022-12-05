@@ -221,7 +221,7 @@ public class climateController {
 
 
     @DeleteMapping("delete/user/{username}")
-    public ResponseEntity<Void> deleteUsername(@PathVariable String username){
+    public ResponseEntity<String> deleteUsername(@PathVariable String username){
         secService.deleteUsername(username);
         return ResponseEntity.ok().build();
     }

@@ -163,7 +163,6 @@ import "chartjs-adapter-luxon";
                      
           setChartData(muuttuja); 
           setisloading(false)
-          debugger
         })).catch(error => {
           alert(error)
           setisloading(true)

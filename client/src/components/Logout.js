@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom"
 
-
 export default function Logout() {
-    const nav = useNavigate()
+    
+    const navigate = useNavigate()
+
+    localStorage.clear();
     localStorage.removeItem("token")
-    nav("/home")
+    navigate('/')
     window.location.reload(false)
 }

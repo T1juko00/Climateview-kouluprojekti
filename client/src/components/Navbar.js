@@ -1,20 +1,23 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { Nav, NavDropdown } from 'react-bootstrap'
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 //import { useEffect, useState } from 'react'
-//import Logout from "./Logout"
-//import Login from "./Login"
 
 
 export default function Navbar() {
 
+    const navigate = useNavigate()
     let uname = localStorage.getItem("uname")
 
-    const handleClick = () => {
-        localStorage.clear();
-        window.location.reload();
+    function logOut() {
 
+
+        localStorage.clear();
+        localStorage.removeItem("token")
+        navigate('/')
+        window.location.reload(false)
     }
 
     return (
@@ -39,9 +42,9 @@ export default function Navbar() {
                     {localStorage.getItem("uname") ?
                     <Nav>
                         <NavDropdown title={uname} >
-                            <NavDropdown.Item><Link onClick={handleClick}>Logout</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link onClick={logOut}>Logout</Link></NavDropdown.Item>
                             <NavDropdown.Item>Change password</NavDropdown.Item>
-                            <NavDropdown.Item><Link to="deleteuser">DeleteUser</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="deleteuser">Delete account</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     :

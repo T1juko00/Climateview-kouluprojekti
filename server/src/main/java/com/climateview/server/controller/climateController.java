@@ -158,6 +158,12 @@ public class climateController {
 
     }
 
+    @GetMapping("V9AllData")
+    public List<V9Data> getV9AllData(){
+        return pemission.getV9AllData();
+
+    }
+
     @GetMapping("V4Data")
     public List<co2_annualdata> getV4Data(){
         return pco2a.getV4Data();

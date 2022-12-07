@@ -11,11 +11,8 @@ import {Chart as ChartJS} from "chart.js/auto";
   
     let globalAnnual = "http://localhost:8080/V5Data"
     
-     
     const request1 = axios.get(globalAnnual);
     
-    
-   
 
     const Chart = () => { 
       axios.all([request1]).then(axios.spread((...responses) => {

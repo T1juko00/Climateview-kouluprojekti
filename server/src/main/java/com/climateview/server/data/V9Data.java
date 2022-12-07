@@ -24,25 +24,26 @@ public class V9Data {
         this.sector = sector;
         this.emission = emission;
         this.ClassId = ClassId;
+       
     }
 
     public long getId() {
         return this.id;
     }
 
-    public String getsector() {
+    public String getSector() {
         return this.sector;
     }
 
-    public void setsector(String sector) {
+    public void setSector(String sector) {
         this.sector = sector;
     }
 
-    public double getemission() {
+    public double getEmission() {
         return this.emission;
     }
 
-    public void setemission(double emission) {
+    public void setEmission(double emission) {
         this.emission = emission;
     }
 

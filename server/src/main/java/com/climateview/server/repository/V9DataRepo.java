@@ -14,10 +14,10 @@ public interface V9DataRepo extends JpaRepository<V9Data, Long>{
     @Query(value = "SELECT * FROM V9Data WHERE class_id = 'V9.1'", nativeQuery = true)
     List<V9Data> getV9_1Data();
 
-    @Query(value = "SELECT * FROM V9Data WHERE class_id = 'V9.2'", nativeQuery = true)
-    List<V9Data> getV9_2Data();
+    @Query(value = "SELECT * FROM V9Data WHERE class_id = 'V9_2'", nativeQuery = true)
+    List<V9Data> getV9_2Data(); 
 
-    @Query(value = "SELECT * FROM V9Data", nativeQuery = true)
-    List<V9Data> getV9AllData();
+    @Query(value = "SELECT * FROM V9Data WHERE class_id = 'V9_3'", nativeQuery = true)
+    List<V9Data> getV9_3Data();
     
 }

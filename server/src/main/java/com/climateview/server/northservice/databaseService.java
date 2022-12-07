@@ -1,6 +1,6 @@
 package com.climateview.server.northservice;
 import static java.lang.Double.parseDouble;
-//import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class databaseService {
         String jdbcurl ="jdbc:mysql://localhost:3306/climate1";
         String username="root";
         String password="";
-        String filepath="server\\src\\main\\resources\\rawdata\\9.Global-GHG-Emissions-by-sector-based-on-WRI-2020.csv";
+        String filepath="server\\src\\main\\resources\\rawdata\\V4DE08-2.csv";
     
         int batchSize=20;
     
@@ -32,7 +32,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert v9data (subsector,emission) values(?,?)";
+            String sql="insert co2_annualdata (year,co2 ) values(?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -48,7 +48,7 @@ public class databaseService {
                 String year= data[0];
                 String temp= data[1];
 
-                statement.setString(1, (year));
+                statement.setInt(1, parseInt(year));
                 statement.setDouble(2, parseDouble(temp));
                 statement.addBatch();
                 if(count%batchSize==0){

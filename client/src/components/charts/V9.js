@@ -1,18 +1,46 @@
 import React from 'react'
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart as chartJS } from "chart.js/auto";
+import axios from 'axios';
 
 export default function V9() {
-    const data = {
+    
+  
+    let energy = "http://localhost:8080/V9Data"
+    let industrial = "http://localhost:8080/V9_1Data"
+    let waste = "http://localhost:8080/V9_2Data"
+    let agriculture = "http://localhost:8080/V9Data"
+
+    const request1 = axios.get(energy);
+    const request2 = axios.get(industrial);  
+    const request3 = axios.get(waste);
+    const request4 = axios.get(agriculture);
+
+    axios.all([request1,request2,request3,request4]).then(axios.spread((...responses) => {
+      const energy = responses[0].data
+      const industrial = responses[1].data
+      const waste = responses[2].data
+      const agriculture = responses[3].data
+    
+  
+  
+  
+  
+  
+  
+  const data = {
         
         labels: [
-          'Energy',
-          'Indrustial processes',
-          'Waste',
-          'Agriculture'
+         energy.map((thisElement, index) => {
+          console.log(thisElement);
+          console.log(index);
+          return thisElement
+         }),
+         
+
         ],
         datasets: [{
-          label: 'My First Dataset',
+          
           data: [73.2, 5.2, 3.2, 18.4],
           backgroundColor: [
             'rgb(255, 99, 132)',
@@ -25,10 +53,11 @@ export default function V9() {
       };
 
   return (
-    <div  style={{ width: "700px" }}>
     
-    <Pie data={data} />
-    </div>
+    
+    <Doughnut data={data} />
+    
      
   )
+}))
 }

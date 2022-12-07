@@ -79,6 +79,14 @@ import "chartjs-adapter-luxon";
         y1: {
           type: 'linear',
           position: 'left',
+        },
+        x: {
+          type: "linear",
+          reverse: "true",
+          title: {
+            display: true,
+            text: 'Time in years',
+          },
         }
           
         },

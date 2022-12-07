@@ -158,9 +158,29 @@ public class climateController {
 
     }
 
+    @GetMapping("V9_3Data")
+    public List<V9Data> getV9_3Data(){
+        return pemission.getV9_3Data();
+
+    }
+
+
+
     @GetMapping("V4Data")
     public List<co2_annualdata> getV4Data(){
         return pco2a.getV4Data();
+
+    }
+
+    @GetMapping("V4_1Data")
+    public List<co2_annualdata> getV4_1Data(){
+        return pco2a.getV4_1Data();
+
+    }
+
+    @GetMapping("V4_2Data")
+    public List<co2_annualdata> getV4_2Data(){
+        return pco2a.getV4_2Data();
 
     }
 
@@ -193,7 +213,7 @@ public class climateController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(
-        @RequestParam String uname, 
+        @RequestParam String uname,
         @RequestParam String pw)
         {
             String token = secService.login(uname, pw);
@@ -221,7 +241,7 @@ public class climateController {
 
 
     @DeleteMapping("delete/user/{username}")
-    public ResponseEntity<Void> deleteUsername(@PathVariable String username){
+    public ResponseEntity<String> deleteUsername(@PathVariable String username){
         secService.deleteUsername(username);
         return ResponseEntity.ok().build();
     }

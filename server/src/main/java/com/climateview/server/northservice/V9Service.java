@@ -25,6 +25,12 @@ public class V9Service {
 
     public List<V9Data> getV9_2Data(){
         return pemission.getV9_2Data();
-    } 
+    }
+
+    public List<V9Data> getV9_3Data(){
+        return pemission.getV9_3Data();
+    }
+    
+    
     
 }

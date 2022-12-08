@@ -1,58 +1,306 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Doughnut } from "react-chartjs-2";
-import { Chart as chartJS } from "chart.js/auto";
-import axios from 'axios';
 
-export default function V9() {
-    
-  
-    let energy = "http://localhost:8080/V9Data"
-    let industrial = "http://localhost:8080/V9_1Data"
-    let waste = "http://localhost:8080/V9_2Data"
-    let agriculture = "http://localhost:8080/V9Data"
+    let energy = "http://localhost:8080/V9AllData"
 
-    const request1 = axios.get(energy);
-    const request2 = axios.get(industrial);  
-    const request3 = axios.get(waste);
-    const request4 = axios.get(agriculture);
+     function V9() {
 
-    axios.all([request1,request2,request3,request4]).then(axios.spread((...responses) => {
-      const energy = responses[0].data
-      const industrial = responses[1].data
-      const waste = responses[2].data
-      const agriculture = responses[3].data
-    
-  
-  const data = {
-        
-        labels: [
-         energy.map((thisElement, index) => {
-          console.log(thisElement);
-          console.log(index);
-          return thisElement
-         }),
-         
-
-        ],
+      const [total, setTotal] = useState({
         datasets: [{
-          
-          data: [73.2, 5.2, 3.2, 18.4],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(78, 25, 90)'
-          ],
-          hoverOffset: 4
-        }]
-      };
+          data: [10,20,30],
+        },
+    ],
+      });
 
+
+      const [data, setData] = useState({
+        datasets: [{
+          data: [10,20,30],
+        },
+    ],
+      });
+
+      const [data1, setData1] = useState({
+        datasets: [{
+          data: [10,20,30],
+        },
+    ],
+      });
+
+      const [data2, setData2] = useState({
+        datasets: [{
+          data: [10,20,30],
+        },
+    ],
+      });
+
+      const [data3, setData3] = useState({
+        datasets: [{
+          data: [10,20,30],
+        },
+    ],
+      });
+
+        
+      useEffect(() => {
+      const fetchData = () => {
+        fetch (energy).then ((data) => {
+        const res = data.json();
+        return res
+      }).then((res) => {
+        console.log("res",res)
+        const label = [];
+        const data = [];
+        for ( var i of res){
+          if ( i.id > 1 && i.id < 20){
+          label.push (i.sector);
+          data.push (i.emission)
+          }
+      }
+        console.log(label,data)
+        setData({
+            labels:label,
+            datasets: [{
+              data: data,
+              backgroundColor: [         
+                'black',
+                'blue',
+                'red',
+                'green',
+                'yellow',
+                'orange',
+                'grey',
+                'pink',
+                'brown',
+                'white',
+                'maroon',
+                'khaki',
+                'silver',
+                'cyan',
+                'olive',
+                'ivory',
+                'coral',
+                'lime',
+                'aquamarine'
+              ]
+            },
+          ]
+        }
+        )
+        }).catch (e => {
+          console.log("error",e)
+        })
+      }
+      fetchData();
+      }, [])
+
+
+
+
+      useEffect(() => {
+        const fetchData = () => {
+          fetch (energy).then ((data) => {
+          const res = data.json();
+          return res
+        }).then((res) => {
+          console.log("res",res)
+          const label = [];
+          const data = [];
+          for ( var i of res){
+            if ( i.id == 1 || i.id == 20 || i.id == 23 || i.id == 26){
+            label.push (i.sector);
+            data.push (i.emission)
+            }
+        }  
+          console.log(label,data)
+       
+          setTotal({
+              labels:label,
+              datasets: [{
+                data: data,
+                backgroundColor: [         
+                  'black',
+                  'green',
+                  'aqua',
+                  'brown',
+                ]
+              },
+            ]
+          }
+          )
+          }).catch (e => {
+            console.log("error",e)
+          })
+        }
+        fetchData();
+        }, [])
+
+
+
+      useEffect(() => {
+        const fetchData = () => {
+          fetch (energy).then ((data) => {
+          const res = data.json();
+          return res
+        }).then((res) => {
+          console.log("res",res)
+          const label = [];
+          const data = [];
+          for ( var i of res){
+            if ( i.id > 20 && i.id < 23){
+            label.push (i.sector);
+            data.push (i.emission)
+            }
+        }
+          console.log(label,data)
+          setData1({
+              labels:label,
+              datasets: [{
+                data: data,
+                backgroundColor: [         
+                  'green',
+                  'red',
+                ]
+              },
+            ]
+          }
+          )
+          }).catch (e => {
+            console.log("error",e)
+          })
+        }
+        fetchData();
+        }, [])
+
+
+
+        useEffect(() => {
+          const fetchData = () => {
+            fetch (energy).then ((data) => {
+            const res = data.json();
+            return res
+          }).then((res) => {
+            console.log("res",res)
+            const label = [];
+            const data = [];
+            for ( var i of res){
+              if ( i.id > 23 && i.id < 26){
+              label.push (i.sector);
+              data.push (i.emission)
+              }
+          }
+            console.log(label,data)
+            setData2({
+                labels:label,
+                datasets: [{
+                  data: data,
+                  backgroundColor: [         
+                    'black',
+                    'aqua',
+                   
+                  ]
+                },
+              ]
+            }
+            )
+            }).catch (e => {
+              console.log("error",e)
+            })
+          }
+          fetchData();
+          }, [])
+
+
+
+          useEffect(() => {
+            const fetchData = () => {
+              fetch (energy).then ((data) => {
+              const res = data.json();
+              return res
+            }).then((res) => {
+              console.log("res",res)
+              const label = [];
+              const data = [];
+              for ( var i of res){
+                if ( i.id > 26 && i.id < 32){
+                label.push (i.sector);
+                data.push (i.emission)
+                }
+            }
+              console.log(label,data)
+              setData3({
+                  labels:label,
+                  datasets: [{
+                    data: data,
+                    backgroundColor: [         
+                      'black',
+                      'aqua',
+                      'orange',
+                      'brown',
+                      'grey'
+                     
+                    ]
+                  },
+                ]
+              }
+              )
+              }).catch (e => {
+                console.log("error",e)
+              })
+            }
+            fetchData();
+            }, [])
+            
+  
   return (
+
+    <>
+    <p>
+    Emissions by sector<br></br>
+    <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector">Description</a><br></br>
+    <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx">Dataset</a>
+    </p>
+      <div className="V9" style={{width:'45%', height:'45%'}}>
+      <h2>CO2 emissions by sector</h2>
+      <Doughnut data={total} />
+      <br></br>
+      <br></br>
+      <br></br>
+    </div>
+  
+      <div className="V9" style={{width:'45%', height:'45%'}}>
+      <h2>Energy emission</h2>
+      <Doughnut data={data} />
+      <br></br>
+      <br></br>
+      <br></br>
+    </div>
+   
+ 
+    <div className="V9_1" style={{width:'45%', height:'45%'}}>
+    <h2>Industrial processes emission</h2>
+    <Doughnut data={data1} />
+    <br></br>
+    <br></br>
+    <br></br>
+    </div>
+   
+
+
+    <div className="V9_2" style={{width:'45%', height:'45%'}}>
+    <h2>Waste emission</h2>
+    <Doughnut data={data2} />
+    <br></br>
+    </div>
+
+    <div className="V9_3" style={{width:'45%', height:'45%'}}>
+    <h2>Agriculture Forestry & Land Use (AFOLU) emission</h2>
+    <Doughnut data={data3} />
+    <br></br>
+    </div>
     
+    </>
     
-    <Doughnut data={data} />
-    
-     
   )
-}))
-}
+  }
+  export default V9;

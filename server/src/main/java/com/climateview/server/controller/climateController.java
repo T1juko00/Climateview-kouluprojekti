@@ -21,7 +21,6 @@ import com.climateview.server.northservice.V10Service;
 import com.climateview.server.northservice.co2MonthlyService;
 import com.climateview.server.northservice.co2AnnualService;
 import com.climateview.server.northservice.V9Service;
-
 import java.util.Base64;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -57,12 +56,12 @@ public class climateController {
 
 
 
-    @GetMapping("allAnnual")
+    @GetMapping("allAnnual") 
     public List<AnnualData> getAllAnnual(){
         return pAnnualdata.getAllAnnualDatas();
     }
 
-    @GetMapping("allMonthly")
+    @GetMapping("allMonthly") 
     public List<MonthlyData> getAllMonthly(){
         return pMonthlydata.getAllMonthlyData();
     }
@@ -163,6 +162,11 @@ public class climateController {
         return pemission.getV9_3Data();
 
     }
+    @GetMapping("V9AllData")
+    public List<V9Data> getV9AllData(){
+        return pemission.getV9AllData();
+
+    }
 
 
 
@@ -247,29 +251,6 @@ public class climateController {
     }
 
 
-    @PostMapping("loginbasic")
-    public ResponseEntity<String> loginBasic(@RequestHeader("Authorization") String basicAuth)
-        {
-
-            String token = null;
-            //"Basic uname:pw"
-            if(basicAuth.startsWith("Basic")){
-                String credentials = basicAuth.split(" ")[1];
-                String[] user = new String( Base64.getDecoder().decode(credentials)).split(":");
-                token = secService.login(user[0], user[1]);
-            }
-
-        
-            if(token == null){
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.TEXT_PLAIN);
-            return new ResponseEntity<>(token, HttpStatus.OK);
-
-         
-        }
 }
    
    
@@ -293,30 +274,5 @@ public class climateController {
    
    
    
-   
-   
-    /*  @GetMapping("AnnualById/{id}")
-    public Optional<AnnualData> getAnnualById(@PathVariable long id){
-        return pAnnualdata.getAnnualById(id);
-    }
 
-    @GetMapping("MonthlyById/{id}")
-    public Optional<MonthlyData> getMonthlyById(@PathVariable long id){
-        return pMonthlydata.getMonthlyById(id);
-    }
-
-    @GetMapping("annualbyid/{classId}")
-    public List<AnnualData> getAnnualByClassId(@PathVariable String classId){
-
-        return pAnnualdata.getAnnualByClassId(classId);
-        
-    }
-
-    @GetMapping("monthlybyid/{classId}")
-    public List<MonthlyData> getMonthlyByClassId(@PathVariable String classId){
-
-        return pMonthlydata.getMonthlyByClassId(classId);
-        
-    }
-    */
 

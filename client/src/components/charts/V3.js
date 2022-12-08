@@ -134,7 +134,7 @@ import "chartjs-adapter-luxon";
                   parsing: {
                     xAxisKey: "year",
                     yAxisKey: "value",
-                    y: "event", 
+                     
                     
                   },
                 },

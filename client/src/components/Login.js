@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-//import App from '../App'
-//import Constants from './Constants.json'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 

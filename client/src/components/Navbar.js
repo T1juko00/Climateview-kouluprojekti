@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Nav, NavDropdown } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
-//import { useEffect, useState } from 'react'
 
 
 export default function Navbar() {
@@ -43,7 +42,6 @@ export default function Navbar() {
                     <Nav>
                         <NavDropdown title={uname} >
                             <NavDropdown.Item><Link onClick={logOut}>Logout</Link></NavDropdown.Item>
-                            <NavDropdown.Item>Change password</NavDropdown.Item>
                             <NavDropdown.Item><Link to="deleteuser">Delete account</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

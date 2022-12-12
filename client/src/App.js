@@ -15,7 +15,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import NotFound from "./components/NotFound";
-//import {Buffer} from "buffer";
 
 function App() {
 

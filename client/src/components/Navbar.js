@@ -43,7 +43,6 @@ export default function Navbar() {
                     <Nav>
                         <NavDropdown title={uname} >
                             <NavDropdown.Item><Link onClick={logOut}>Logout</Link></NavDropdown.Item>
-                            <NavDropdown.Item>Change password</NavDropdown.Item>
                             <NavDropdown.Item><Link to="deleteuser">Delete account</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

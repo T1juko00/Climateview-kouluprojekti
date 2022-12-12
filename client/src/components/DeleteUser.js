@@ -12,7 +12,6 @@ export default function DeleteUser() {
 
     function logOut() {
 
-
         localStorage.clear();
         localStorage.removeItem("token")
         navigate('/')

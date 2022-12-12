@@ -24,15 +24,19 @@ function App() {
 
   // blocks access to visualize if not logged in
   //blocks access to login/signin if logged in
+  //<Route path="/signup" element={<SignUp testi = "terve" konsta = "24" />} />
   let authRoutes = <>
-  <Route path="/signup" element={<SignUp />} />
-  <Route path="/login" element={<Login login={newJwt =>  setUserJwt(newJwt)} />} />
+
+
+  <Route path="/signup" element={<SignUp/>} />
+  <Route path="/login" element={<Login login />} />
   </>
 
  /*if(UserJwt != null) {
     
   }
 */
+
   return (
     <>
         <Navbar />

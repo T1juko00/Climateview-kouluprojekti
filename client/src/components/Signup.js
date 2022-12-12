@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-export default function Signup() {
+export default function Signup(props) {
 
   const [signupProcessState, setSignupProcessState ] = useState("idle")
   const [uname, setUname] = useState('');
@@ -57,13 +57,16 @@ export default function Signup() {
       signupUIControls= <span style={{ color: "red" }}>Error</span>
       break;
   }
+
+  // propsissa on arvo {props.testi}, value={props.konsta}
   return (
     <div>
       <h2>Sign up</h2>
+  
       <form onSubmit={ HandleSignupSubmit }>
         <div>
           Username <br />
-          <input type="text" onChange={(e) => setUname(e.target.value)} />
+          <input type="text" onChange={(e) => setUname(e.target.value)}  />
         </div>
         <div>
           Email <br />

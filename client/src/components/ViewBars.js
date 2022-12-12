@@ -29,7 +29,7 @@ return(
 
  <h2>GRAPHS</h2>
   <div>
-  <Button id="button" onClick={NavigateToV1_V7}>V1-V7&V10 graphs</Button>
+  <Button id="button" onClick={NavigateToV1_V7}>V1-V7&V10 Graphs</Button>
   <br></br>
   <Button id="button" onClick={NavigateToV8_V9}>V8 & V9 Graphs</Button>
   </div>

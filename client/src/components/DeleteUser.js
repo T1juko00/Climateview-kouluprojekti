@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-//import {logOut} from './Navbar'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
@@ -36,11 +35,10 @@ export default function DeleteUser() {
 
     return (
         <div>
-            <h2>Delete user</h2>
+            <h3>Delete user</h3>
             <form onSubmit={DeleteAccount}>
                 <div>
-                    Username <br />
-                    <input type="text" />
+                    <br/>
                     <button type="submit" onClick={(e) => setDeleteUser(e.target.value)}>Delete</button>
                     < br />
                     < br />

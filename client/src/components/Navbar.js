@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Nav, NavDropdown } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
-//import { useEffect, useState } from 'react'
 
 
 export default function Navbar() {

@@ -1,0 +1,40 @@
+
+@media only screen and (max-width: 600px) {
+  body{
+    background-color: lightblue;
+  }
+
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .toggle-button {
+      display:flex;
+
+    }
+
+    nav .links {
+      width: 100%;
+    }
+
+    nav .links ul {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    nav .links li {
+      text-align: center;
+    }
+
+    nav .links li a {
+      padding: .5rem 1rem;
+    }
+  } 
+
+
+  @media only screen and (min-width: 1024px) {
+  
+  } 
+
+  

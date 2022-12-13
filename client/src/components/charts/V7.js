@@ -45,9 +45,23 @@ import "chartjs-adapter-luxon";
               },
               {
                 label: 'Notable events in Human history',
-                data: event.map(d => d.event),
+                data: event.map(d =>{
+                  let newformat = {
+                    
+                    event: d.event,
+                    value: 290,
+                    year: 2022 - d.year,
+                  }
+                  console.log(newformat);          
+                  return newformat   
+                } ),
                 backgroundColor: 'purple',
-                borderColour: 'purple',       
+                  borderColour: 'purple',
+                  yAxisID: 'y1',
+                  parsing: {
+                    xAxisKey: "year",
+                    yAxisKey: "value",
+                  },    
               },                        
             ],
             
@@ -70,6 +84,20 @@ import "chartjs-adapter-luxon";
           display: true,
           text: "Evolution of global temperature over the past two million years",
         },
+        tooltip: {
+          callbacks: {
+            label: ((tooltipItem) => {
+              console.log(tooltipItem);
+              if(tooltipItem.datasetIndex === 2){
+                return tooltipItem.raw.event
+              }
+              else {
+                return tooltipItem.dataset.label + " " + tooltipItem.formattedValue
+              }
+              
+            })
+          }
+        },
       },
       scales: {
        y: {
@@ -85,7 +113,7 @@ import "chartjs-adapter-luxon";
           reverse: "true",
           title: {
             display: true,
-            text: 'Time in years',
+            text: 'Time (Years ago, 0 meaning 2022)',
           },
         }
           

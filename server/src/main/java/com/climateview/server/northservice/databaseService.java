@@ -19,7 +19,7 @@ public class databaseService {
         String jdbcurl ="jdbc:mysql://localhost:3306/climate1";
         String username="root";
         String password="";
-        String filepath="ClimateView\\server\\src\\main\\resources\\rawdata\\V9.6.csv";
+        String filepath="server\\src\\main\\resources\\rawdata\\8.National_Carbon_Emissions_paivitetty.csv";
     
         int batchSize=20;
     
@@ -31,7 +31,7 @@ public class databaseService {
             connection= DriverManager.getConnection(jdbcurl, username, password);
             connection.setAutoCommit(false);
 
-            String sql="insert v9data (sector, emission) values(?,?)";
+            String sql="insert co2_annualdata (class_id,year,co2 ) values(?,?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
 
@@ -46,9 +46,12 @@ public class databaseService {
 
                 String year= data[0];
                 String temp= data[1];
+                String co2 = data[2];
 
                 statement.setString(1,(year));
-                statement.setDouble(2, parseDouble(temp));
+                statement.setInt(2, parseInt(temp));
+                statement.setDouble(3, parseDouble(co2));
+                
                 statement.addBatch();
                 if(count%batchSize==0){
                     statement.executeBatch();

@@ -22,6 +22,7 @@ import "chartjs-adapter-luxon";
     const request4 = axios.get(eventData);
     const request5 = axios.get(v4_1data);
     const request6 = axios.get(v4_2data);
+    
 
     const Chart = () => { 
       axios.all([request1, request2, request3, request4, request5, request6 ]).then(axios.spread((...responses) => {
@@ -122,7 +123,7 @@ import "chartjs-adapter-luxon";
                     let newformat = {
                       
                       event: d.event,
-                      value : 430,
+                      value: 430,
                       year: d.year.toString().padStart(4,"0"),
                     }
                     console.log(newformat);          
@@ -160,6 +161,20 @@ import "chartjs-adapter-luxon";
           display: true,
           text: "Mauna Loa CO2 consentration",
         },
+        tooltip: {
+          callbacks: {
+            label: ((tooltipItem) => {
+              console.log(tooltipItem);
+              if(tooltipItem.datasetIndex === 5){
+                return tooltipItem.raw.event
+              }
+              else {
+                return tooltipItem.dataset.label + " " + tooltipItem.formattedValue
+              }
+              
+            })
+          }
+        }
       },
       scales: {
           yAxis: {
@@ -185,6 +200,7 @@ import "chartjs-adapter-luxon";
     useEffect(() => {
       Chart()
     }, [])
+    
   
     if(isloading === true){
       return(

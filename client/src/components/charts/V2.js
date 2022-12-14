@@ -183,13 +183,21 @@ import "chartjs-adapter-luxon";
       },
       scales: {
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Temperature"
+          }
         },
         xAxis : {
           type: "time",
           time: {
             unit: "month",
           },
+          title: {
+            display: true,
+            text: "Time"
+          }
         }
       },
     };
@@ -213,12 +221,13 @@ import "chartjs-adapter-luxon";
               
              </div>
           </div>
-          <p>
+          <div> 
           <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005">Description V2</a><br />
           <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Hadcrut description and dataset</a><br />
-          <p>Description here</p>
           <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Dataset V2</a>
-          </p>
+          <p>Line chart illustrates global historical surface temperature anomalies from January 1850 onward.</p>
+          <p>V2 dataset is a reconstruction of Northern Hemisphere temperature anomalies for the past 2000 years.</p>
+          </div>
         </div>
     );
   } }

@@ -49,7 +49,7 @@ public class databaseService {
                 String co2 = data[2];
 
                 statement.setString(1,(year));
-                statement.setInt(2, parseInt(temp));
+                //statement.setInt(2, parseInt(temp));
                 statement.setDouble(3, parseDouble(co2));
                 
                 statement.addBatch();

@@ -88,11 +88,11 @@ import {Chart as ChartJS} from "chart.js/auto";
               
              </div>
           </div>
-          <p> 
+           <div> 
           <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975">Description</a><br />
-        <p>Description here</p> <br />
         <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Dataset</a>
-        </p>
+        <p>CO2 Records from all the main ice cores from antarctica over the time period of ~800 000 years</p>
+        </div>
         </div>
     );
   } } 

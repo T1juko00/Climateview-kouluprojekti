@@ -46,8 +46,9 @@ export default function V8() {
           
           return countryObj;
         }) 
+
         
-        //console.log(emissions);
+        console.log(emissions);
        
         /*function setValues(map, key, value) {
             if (!map.has(key)){
@@ -155,11 +156,13 @@ export default function V8() {
               
              </div>
           </div>
-          <p> 
-          <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975">Description</a><br />
-        <p>Description here</p> <br />
-        <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Dataset</a>
-        </p>
+          <div> 
+          <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Description</a><br />
+          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Dataset</a>
+        <p>This stacked line chart shows the co2 emissions of each country over time.</p> <br />
+        </div>
+        
+        
         </div>
     );
   } } 

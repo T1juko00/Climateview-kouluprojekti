@@ -255,19 +255,21 @@ import { Doughnut } from "react-chartjs-2";
   return (
 
     <>
-    <p>
+    
+      <div className="V9" style={{width:'45%', height:'45%'}}>
+      <h2>CO2 emissions by sector (%)</h2>
+      <Doughnut data={total} />
+    
+      <br></br>
+      <br></br>
+      <p>
     Emissions by sector<br></br>
     <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector">Description</a><br></br>
     <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx">Dataset</a>
     </p>
-      <div className="V9" style={{width:'45%', height:'45%'}}>
-      <h2>CO2 emissions by sector</h2>
-      <Doughnut data={total} />
-      <br></br>
-      <br></br>
       <br></br>
     </div>
-  
+      <h1> Emissions by each subsector</h1> <br />
       <div className="V9" style={{width:'45%', height:'45%'}}>
       <h2>Energy emission</h2>
       <Doughnut data={data} />

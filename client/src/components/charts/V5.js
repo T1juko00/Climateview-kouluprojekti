@@ -87,11 +87,11 @@ import {Chart as ChartJS} from "chart.js/auto";
               
              </div>
           </div>
-          <p>
+          <div> 
           <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Description</a><br />
-        <p>Description here</p> <br />
         <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">Dataset</a>
-        </p>
+        <p>This line chart contains CO2 records derived from the ice core of the Russian Vostok station in Antarctica. </p>
+        </div>
         </div>
     );
   } } 

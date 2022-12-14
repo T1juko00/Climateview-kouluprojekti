@@ -103,10 +103,18 @@ import "chartjs-adapter-luxon";
        y: {
         type: 'linear',
         position: 'right',
+        title: {
+          display: true,
+          text: 'Temperature change',
+        },
         },
         y1: {
           type: 'linear',
           position: 'left',
+          title: {
+            display: true,
+            text: 'CO2 ppm',
+          },
         },
         x: {
           type: "linear",
@@ -140,11 +148,11 @@ import "chartjs-adapter-luxon";
                 
                </div>
             </div>
-            <p> 
+             <div> 
             <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Description</a><br />
-          <p>Description here</p> <br />
           <a href="http://carolynsnyder.com/publications.php">Dataset</a>
-          </p>
+          <p>This chart combines the evolution of global temperatures of the available past 2 million years, with the evolution of global CO2 concentrations from the available past 800 000 years. </p>
+          </div>
           </div>
       );
     }  

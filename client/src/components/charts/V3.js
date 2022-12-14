@@ -217,11 +217,12 @@ import "chartjs-adapter-luxon";
               
              </div>
           </div>
-          <p>
-          <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Description</a><br />
-        <p>Description here</p> <br />
+          <div> 
+        <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Description</a><br />
         <a href="https://gml.noaa.gov/ccgg/trends/data.html">Dataset</a>
-        </p>
+        <p>Line chart illustrating CO2 concentration measurements, measured in Mauna Loa, Hawaii.</p>
+        <p>Datasets DSS, DE08 and DE08-2 are CO2 records derived from the three ice cores located at Law Dome, Antarctica. </p>
+        </div>
         </div>
     );
   } } 

@@ -3,7 +3,9 @@ package com.climateview.server.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.climateview.server.data.AnnualData;
 import com.climateview.server.data.MonthlyData;
@@ -19,11 +21,7 @@ import com.climateview.server.northservice.V10Service;
 import com.climateview.server.northservice.co2MonthlyService;
 import com.climateview.server.northservice.co2AnnualService;
 import com.climateview.server.northservice.V9Service;
-
-import java.util.Base64;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -55,12 +53,12 @@ public class climateController {
 
 
 
-    @GetMapping("allAnnual")
+    @GetMapping("allAnnual") 
     public List<AnnualData> getAllAnnual(){
         return pAnnualdata.getAllAnnualDatas();
     }
 
-    @GetMapping("allMonthly")
+    @GetMapping("allMonthly") 
     public List<MonthlyData> getAllMonthly(){
         return pMonthlydata.getAllMonthlyData();
     }
@@ -138,6 +136,12 @@ public class climateController {
         
     }
 
+    @GetMapping("V8Data")
+    public List<co2_annualdata> getV8Data(){
+        return pco2a.getV8Data();
+        
+    }
+
     @GetMapping("V9Data")
     public List<V9Data> getV9Data(){
         return pemission.getV9Data();
@@ -156,9 +160,34 @@ public class climateController {
 
     }
 
+    @GetMapping("V9_3Data")
+    public List<V9Data> getV9_3Data(){
+        return pemission.getV9_3Data();
+
+    }
+    @GetMapping("V9AllData")
+    public List<V9Data> getV9AllData(){
+        return pemission.getV9AllData();
+
+    }
+
+
+
     @GetMapping("V4Data")
     public List<co2_annualdata> getV4Data(){
         return pco2a.getV4Data();
+
+    }
+
+    @GetMapping("V4_1Data")
+    public List<co2_annualdata> getV4_1Data(){
+        return pco2a.getV4_1Data();
+
+    }
+
+    @GetMapping("V4_2Data")
+    public List<co2_annualdata> getV4_2Data(){
+        return pco2a.getV4_2Data();
 
     }
 
@@ -175,6 +204,11 @@ public class climateController {
     }
 
 
+    @GetMapping("users")
+    public List<User> getUsers() {
+        return secService.getUsers();
+    }
+
 
     @PostMapping("register")
     public ResponseEntity<String> register(
@@ -186,7 +220,7 @@ public class climateController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(
-        @RequestParam String uname, 
+        @RequestParam String uname,
         @RequestParam String pw)
         {
             String token = secService.login(uname, pw);
@@ -212,29 +246,14 @@ public class climateController {
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
-    @PostMapping("loginbasic")
-    public ResponseEntity<String> loginBasic(@RequestHeader("Authorization") String basicAuth)
-        {
 
-            String token = null;
-            //"Basic uname:pw"
-            if(basicAuth.startsWith("Basic")){
-                String credentials = basicAuth.split(" ")[1];
-                String[] user = new String( Base64.getDecoder().decode(credentials)).split(":");
-                token = secService.login(user[0], user[1]);
-            }
+    @DeleteMapping("delete/user/{username}")
+    public ResponseEntity<String> deleteUsername(@PathVariable String username){
+        secService.deleteUsername(username);
+        return ResponseEntity.ok().build();
+    }
 
-        
-            if(token == null){
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.TEXT_PLAIN);
-            return new ResponseEntity<>(token, HttpStatus.OK);
-
-         
-        }
 }
    
    
@@ -258,30 +277,5 @@ public class climateController {
    
    
    
-   
-   
-    /*  @GetMapping("AnnualById/{id}")
-    public Optional<AnnualData> getAnnualById(@PathVariable long id){
-        return pAnnualdata.getAnnualById(id);
-    }
 
-    @GetMapping("MonthlyById/{id}")
-    public Optional<MonthlyData> getMonthlyById(@PathVariable long id){
-        return pMonthlydata.getMonthlyById(id);
-    }
-
-    @GetMapping("annualbyid/{classId}")
-    public List<AnnualData> getAnnualByClassId(@PathVariable String classId){
-
-        return pAnnualdata.getAnnualByClassId(classId);
-        
-    }
-
-    @GetMapping("monthlybyid/{classId}")
-    public List<MonthlyData> getMonthlyByClassId(@PathVariable String classId){
-
-        return pMonthlydata.getMonthlyByClassId(classId);
-        
-    }
-    */
 

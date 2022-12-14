@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS} from "chart.js/auto";
-import "chartjs-adapter-luxon";
+//import "chartjs-adapter-luxon";
 
 
    export default function V5 () {
@@ -11,11 +11,8 @@ import "chartjs-adapter-luxon";
   
     let globalAnnual = "http://localhost:8080/V5Data"
     
-     
     const request1 = axios.get(globalAnnual);
     
-    
-   
 
     const Chart = () => { 
       axios.all([request1]).then(axios.spread((...responses) => {
@@ -55,11 +52,19 @@ import "chartjs-adapter-luxon";
         },
       },
       scales: {
-          
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Co2 concentration (ppmv)",
+          },
         },
-        
+        xAxis: {
+          title: {
+           display: true,
+           text: "Years BP (before present)",
+          }
+        }
       },
     };
     
@@ -82,11 +87,11 @@ import "chartjs-adapter-luxon";
               
              </div>
           </div>
-          <p>
+          <div> 
           <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Description</a><br />
-        <p>Description here</p> <br />
         <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">Dataset</a>
-        </p>
+        <p>This line chart contains CO2 records derived from the ice core of the Russian Vostok station in Antarctica. </p>
+        </div>
         </div>
     );
   } } 

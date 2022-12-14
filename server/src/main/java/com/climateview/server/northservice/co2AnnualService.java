@@ -30,5 +30,17 @@ public class co2AnnualService {
         return pCo2.getV7_1Data();
     } 
 
+    public List<co2_annualdata> getV4_1Data(){
+        return pCo2.getV4_1Data();
+    } 
+
+    public List<co2_annualdata> getV4_2Data(){
+        return pCo2.getV4_2Data();
+    } 
+
+    public List<co2_annualdata> getV8Data(){
+        return pCo2.getV8Data();
+    } 
+
     
 }

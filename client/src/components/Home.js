@@ -1,25 +1,19 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Nav, div } from 'react-bootstrap'
 
-export default function Home(props) {
-    return (
-        <div>
-            Welcome
-            <div>
-                User login Status: { props.userLoggedIn ? "is logged in" : "not logged in"}
-            </div>
-            <div>
-                { props.userLoggedIn ?
-                    <>
-                    <Link to="Visualize">See graphs</Link><br /> 
-                    </>
-                    :
-                    <>
-                    <Link to="signup">Sign up</Link><br />
-                    <Link to="login">Log in</Link><br />
-                    </>
-                }
-            </div>
-        </div>
+export default function Home() {
+
+    let uname = localStorage.getItem("uname")
+
+return (
+            <Nav>
+                {localStorage.getItem("uname") ?
+                <Nav>
+                <h4>Welcome, {uname}!</h4>
+                </Nav>
+                :
+                <div>Please sign up or log in</div>
+        }
+        </Nav>
     )
 }

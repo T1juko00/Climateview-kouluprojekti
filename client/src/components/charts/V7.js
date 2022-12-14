@@ -45,9 +45,23 @@ import "chartjs-adapter-luxon";
               },
               {
                 label: 'Notable events in Human history',
-                data: event.map(d => d.event),
+                data: event.map(d =>{
+                  let newformat = {
+                    
+                    event: d.event,
+                    value: 290,
+                    year: 2022 - d.year,
+                  }
+                  console.log(newformat);          
+                  return newformat   
+                } ),
                 backgroundColor: 'purple',
-                borderColour: 'purple',       
+                  borderColour: 'purple',
+                  yAxisID: 'y1',
+                  parsing: {
+                    xAxisKey: "year",
+                    yAxisKey: "value",
+                  },    
               },                        
             ],
             
@@ -70,15 +84,45 @@ import "chartjs-adapter-luxon";
           display: true,
           text: "Evolution of global temperature over the past two million years",
         },
+        tooltip: {
+          callbacks: {
+            label: ((tooltipItem) => {
+              console.log(tooltipItem);
+              if(tooltipItem.datasetIndex === 2){
+                return tooltipItem.raw.event
+              }
+              else {
+                return tooltipItem.dataset.label + " " + tooltipItem.formattedValue
+              }
+              
+            })
+          }
+        },
       },
       scales: {
        y: {
         type: 'linear',
         position: 'right',
+        title: {
+          display: true,
+          text: 'Temperature change',
+        },
         },
         y1: {
           type: 'linear',
           position: 'left',
+          title: {
+            display: true,
+            text: 'CO2 ppm',
+          },
+        },
+        x: {
+          type: "linear",
+          reverse: "true",
+          title: {
+            display: true,
+            text: 'Time (Years ago, 0 meaning 2022)',
+          },
         }
           
         },
@@ -104,11 +148,11 @@ import "chartjs-adapter-luxon";
                 
                </div>
             </div>
-            <p> 
+             <div> 
             <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Description</a><br />
-          <p>Description here</p> <br />
           <a href="http://carolynsnyder.com/publications.php">Dataset</a>
-          </p>
+          <p>This chart combines the evolution of global temperatures of the available past 2 million years, with the evolution of global CO2 concentrations from the available past 800 000 years. </p>
+          </div>
           </div>
       );
     }  

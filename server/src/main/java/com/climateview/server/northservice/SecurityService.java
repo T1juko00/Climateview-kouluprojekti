@@ -1,5 +1,7 @@
 package com.climateview.server.northservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class SecurityService {
     @Autowired
     MyPasswordEncoder myEncoder;
 
+
     @Value("${jwt.secret}")
     private String jwtKey;
 
@@ -30,6 +33,8 @@ public class SecurityService {
      * @param pw
      * @return
      */
+
+     //Rekisteröinti
     
     public User register(String uname, String pw, String email){
         User u = new User(uname, myEncoder.encode(pw), email);
@@ -42,6 +47,9 @@ public class SecurityService {
      * @param pw
      * @return
      */
+
+    //Sisäänkirjautuminen
+
     public String login(String uname, String pw){
      
         User u = repo.findById(uname).orElse(null);
@@ -58,6 +66,9 @@ public class SecurityService {
      * @param jwtToken
      * @return
      */
+
+    //Tokenin luominen
+
     public String validateJwt(String jwtToken){
         Algorithm alg = Algorithm.HMAC256(jwtKey);
         JWTVerifier verifier = JWT.require(alg).build();
@@ -71,7 +82,23 @@ public class SecurityService {
         return null;
     }
 
+    //Käyttäjän tallentaminen tietokantaan
+
     public User save(User user) {
         return repo.save(user);
     }
+
+    //Käyttäjän poistaminen tietokannasta
+
+    public void deleteUsername(String username) {
+
+        repo.deleteById(username);
+    }
+
+    //Käyttäjätietojen hakeminen "GET" pyynnöllä tietokannasta
+
+    public List<User> getUsers(){
+        return repo.findAll();
+    }
+
 }

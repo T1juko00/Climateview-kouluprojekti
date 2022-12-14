@@ -40,56 +40,128 @@ import "chartjs-adapter-luxon";
         console.log(testi);
         console.log(globalMonth);
         
-      
-                     
-          setChartData({
+      let muuttuja = {
            
-            labels: v2Year.map(d => d.year),
-            datasets: [
-                {
-                label: 'Global Annual',
-                data: globalYear.map(d => d.temp),
-                backgroundColor: 'red',
-                borderColour: 'red' 
-              }, 
-                {  
-                  label: 'Global Monthly',
-                  data: globalMonth.map(d => d.temp),
-                  backgroundColor: 'blue',
-                  borderColour: 'blue'
-                },
-                { 
-                  label: 'Northern Annual',
-                  data: northYear.map(d => d.temp),
-                  backgroundColor: 'green',
-                  borderColour: 'green'
-                },
-                {
-                  label: 'Northern Monthly',
-                  data: northMonth.map(d => d.temp),
-                  backgroundColor: 'yellow',
-                  borderColour: 'yellow'
-                },
-                {
-                  label: 'Southern Annual',
-                  data: southYear.map(d => d.temp),
-                  backgroundColor: 'purple',
-                  borderColour: 'purple'
-                },
-                {
-                  label: 'Southern Monthly',
-                  data: southMonth.map(d => d.temp),
-                  backgroundColor: 'pink',
-                  borderColour: 'pink'
-                },
-                {
-                  label: 'V2 Data',
-                  data: v2Year.map(d => d.temp),
-                  backgroundColor: 'violet',
-                  borderColour: 'violet'
-                },
-            ],
-          }); 
+           
+        datasets: [
+            {
+            label: 'Global Annual',
+            data: globalYear.map(d =>{
+              let newformat = {
+                temp: d.temp,
+                year: d.year.toString()
+              }
+              return newformat
+            } ),
+            backgroundColor: 'red',
+            borderColour: 'red',
+            parsing: {
+              xAxisKey: "year",
+              yAxisKey: "temp",
+            }
+        
+          }, 
+            {  
+              label: 'Global Monthly',
+              data: globalMonth.map(d =>{
+                let newformat = {
+                  temp: d.temp,
+                  years_calendar: d.years_calendar.toString().substring(0,4) + "-" + d.years_calendar.toString().substring(5,7).padEnd(2,"0") + "-01"
+                }
+                return newformat
+              } ),
+              backgroundColor: 'blue',
+              borderColour: 'blue',
+              parsing: {
+                xAxisKey: "years_calendar",
+                yAxisKey: "temp",
+              } 
+            },
+            { 
+              label: 'Northern Annual',
+              data: northYear.map(d => {
+                let newFormat = {
+                  temp: d.temp,
+                  year: d.year.toString()
+                }
+                return newFormat
+              }),
+              backgroundColor: 'green',
+              borderColour: 'green',
+              parsing:{
+                xAxisKey: "year",
+                yAxisKey: "temp"
+              }
+            },
+            {
+              label: 'Northern Monthly',
+              data: northMonth.map(d =>{
+                let newformat = {
+                  temp: d.temp,
+                  years_calendar: d.years_calendar.toString().substring(0,4) + "-" + d.years_calendar.toString().substring(5,7).padEnd(2,"0") + "-01"
+                }
+                return newformat
+              } ),
+              backgroundColor: 'yellow',
+              borderColour: 'yellow',
+              parsing: {
+                xAxisKey: "years_calendar",
+                yAxisKey: "temp",
+              } 
+            },
+            {
+              label: 'Southern Annual',
+              data: southYear.map(d => {
+                let newFormat = {
+                  temp: d.temp,
+                  year: d.year.toString()
+                }
+                return newFormat
+              }),
+              backgroundColor: 'purple',
+              borderColour: 'purple',
+              parsing: {
+                xAxisKey: "year",
+                yAxisKey: "temp",
+              } 
+            },
+            {
+              label: 'Southern Monthly',
+              data: southMonth.map(d =>{
+                let newformat = {
+                  temp: d.temp,
+                  years_calendar: d.years_calendar.toString().substring(0,4) + "-" + d.years_calendar.toString().substring(5,7).padEnd(2,"0") + "-01"
+                }
+                return newformat
+              } ),
+              backgroundColor: 'pink',
+              borderColour: 'pink',
+              parsing: {
+                xAxisKey: "years_calendar",
+                yAxisKey: "temp",
+              }
+
+            },
+            {
+              label: 'V2 Data',
+              data: v2Year.map(d => {
+                let newFormat = {
+                  temp: d.temp,
+                  year: d.year.toString().padStart(4,"0")
+                }
+                return newFormat
+              }),
+              backgroundColor: 'violet',
+              borderColour: 'violet',
+              parsing: {
+                xAxisKey: "year",
+                yAxisKey: "temp",
+              } 
+            },
+        ],
+      }
+                     
+          setChartData(muuttuja); 
           setisloading(false)
         })).catch(error => {
           alert(error)
@@ -111,9 +183,22 @@ import "chartjs-adapter-luxon";
       },
       scales: {
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Temperature"
+          }
         },
-        
+        xAxis : {
+          type: "time",
+          time: {
+            unit: "month",
+          },
+          title: {
+            display: true,
+            text: "Time"
+          }
+        }
       },
     };
     
@@ -136,15 +221,16 @@ import "chartjs-adapter-luxon";
               
              </div>
           </div>
-          <p>
+          <div> 
           <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005">Description V2</a><br />
           <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Hadcrut description and dataset</a><br />
-          <p>Description here</p>
           <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Dataset V2</a>
-          </p>
+          <p>Line chart illustrates global historical surface temperature anomalies from January 1850 onward.</p>
+          <p>V2 dataset is a reconstruction of Northern Hemisphere temperature anomalies for the past 2000 years.</p>
+          </div>
         </div>
     );
-  } } 
+  } }
 
   
 

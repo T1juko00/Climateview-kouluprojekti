@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS} from "chart.js/auto";
-import "chartjs-adapter-luxon";
+//import "chartjs-adapter-luxon";
 
 
    export default function V6 () {
@@ -53,8 +53,18 @@ import "chartjs-adapter-luxon";
       scales: {
           
           yAxis: {
-          type: "linear"
+          type: "linear",
+          title: {
+            display: true,
+            text: "Co2 measurement ppm (parts per million)"
+          }
         },
+        xAxis: {
+          title: {
+            display: true,
+            text: "Years calBP (calendar years before present)"
+          }
+        }
         
       },
     };
@@ -78,11 +88,11 @@ import "chartjs-adapter-luxon";
               
              </div>
           </div>
-          <p> 
+           <div> 
           <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975">Description</a><br />
-        <p>Description here</p> <br />
         <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Dataset</a>
-        </p>
+        <p>CO2 Records from all the main ice cores from antarctica over the time period of ~800 000 years</p>
+        </div>
         </div>
     );
   } } 

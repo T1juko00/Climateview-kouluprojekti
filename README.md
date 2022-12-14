@@ -45,7 +45,7 @@ Käyttäjän antaessa väärän salasanan, tulostuu selaimelle varoitus ilmoitus
  ![Alt text](client/src/re3.PNG)  
   
 
-<ins>**Kuva 4.**</ins> Kirjautumisen jälkeen selaimen oikeassa yläkulmassa näkyy pudotusvalikko, jonka kautta pääsee tekemään eri toimintoja (kirjaudu ulos ja poista käyttäjä)).  
+<ins>**Kuva 4.**</ins> Kirjautumisen jälkeen selaimen oikeassa yläkulmassa näkyy pudotusvalikko, jonka kautta pääsee tekemään eri toimintoja (kirjaudu ulos ja poista käyttäjä).  
 
  ![Alt text](client/src/re4.PNG)  
   

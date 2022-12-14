@@ -50,6 +50,6 @@ Käyttäjän antaessa väärän salasanan, tulostuu selaimelle varoitus ilmoitus
  ![Alt text](client/src/re4.PNG)  
   
   
-## <ins>Linkki videoon</ins>  
+## Linkki videoon:
 
 https://youtu.be/wHpqIX28BcA 

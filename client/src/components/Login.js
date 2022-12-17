@@ -25,7 +25,7 @@ export default function Login() {
         navigate('/')
         window.location.reload(false);
       }).catch(error => {
-        alert("User doesn't exists, wrong username or password! Try again.")
+        alert("User doesn't exist, wrong username or password! Try again.")
         console.log(error)
         window.location.reload(false);
       })
